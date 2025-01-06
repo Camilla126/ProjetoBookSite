@@ -1,11 +1,9 @@
-import "./styles.css";
-
-function Home() {
+const Home = () => {
   return (
     <div>
-      <h1>APPPP</h1>
+      <h1>HOME</h1>
     </div>
   );
-}
+};
 
 export default Home;
