@@ -5,7 +5,7 @@ const Login = () => {
     <main className={styles.main}>
       <section>
         <form>
-          <h1>helloooo</h1>
+          <h1>Login</h1>
         </form>
       </section>
     </main>

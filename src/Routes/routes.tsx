@@ -12,9 +12,9 @@ import Feed from "../Pages/Feed";
 const MainRoutes = () => {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/" element={<Home />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/feed" element={<Feed />} />
       <Route path="/saved" element={<Saved />} />
       <Route path="/mystory" element={<MyStory />} />
