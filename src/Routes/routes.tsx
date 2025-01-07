@@ -14,7 +14,7 @@ const MainRoutes = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/feed" element={<Feed />} />
       <Route path="/saved" element={<Saved />} />
       <Route path="/mystory" element={<MyStory />} />
