@@ -25,15 +25,17 @@ const Login = () => {
     event.preventDefault();
 
     const newErrors: FormErrorsInterface = {};
-    if (!user.email.trim()) newErrors.email = "O email é obrigatório.";
+    if (!user.email.trim()) newErrors.email = "Campo obrigatório";
     else if (!/\S+@\S+\.\S+/.test(user.email))
       newErrors.email = "O email não é válido.";
-    if (!user.password.trim()) newErrors.password = "A senha é obrigatória.";
+    if (!user.password.trim()) newErrors.password = "Campo obrigatório";
     else if (user.password.length < 7)
       newErrors.password = "A senha deve ter pelo menos 7 caracteres.";
     setErrors(newErrors);
 
-    alert("formulario enviado");
+    if (Object.keys(newErrors).length === 0) {
+      alert("Formulário enviado com sucesso!");
+    }
   };
 
   return (
