@@ -1,3 +1,13 @@
 .main {
-  background-color: red;
+  img {
+  }
+
+  form {
+    width: 1239px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: red;
+  }
 }
