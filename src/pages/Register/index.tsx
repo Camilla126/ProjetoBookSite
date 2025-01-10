@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import styles from "../Login/styles.module.scss";
 import IntersectImage from "../../../src/assets/IMG_logincadastro/Intersect.png";
 
+import { auth } from "../../firebaseConnection";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
 import { useState } from "react";
 
 const Register = () => {
@@ -23,7 +26,7 @@ const Register = () => {
     setUser({ ...user, [event.target.name]: event.target.value });
   };
 
-  const handleRegister = (event: React.FormEvent) => {
+  const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault();
 
     const newErrors: FormErrorsInterface = {};
@@ -32,12 +35,32 @@ const Register = () => {
     else if (!/\S+@\S+\.\S+/.test(user.email))
       newErrors.email = "O email não é válido.";
     if (!user.password.trim()) newErrors.password = "Campo obrigatório";
-    else if (user.password.length < 7)
-      newErrors.password = "A senha deve ter pelo menos 7 caracteres.";
+    else if (user.password.length < 6)
+      newErrors.password = "A senha deve ter pelo menos 6 caracteres.";
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      alert("Formulário enviado com sucesso!");
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          user.email,
+          user.password
+        );
+        await updateProfile(userCredential.user, {
+          displayName: user.username,
+        });
+
+        setUser({ username: "", email: "", password: "" });
+        alert("Cadastro realizado com sucesso!");
+      } catch (error: unknown) {
+        let errorMessage = "Erro desconhecido";
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        alert(`Erro ao fazer cadastro: ${errorMessage}`);
+      }
+    } else {
+      alert("Preencha todos os campos corretamente!");
     }
   };
 
@@ -74,9 +97,9 @@ const Register = () => {
           {errors.email && <span className={styles.erro}>{errors.email}</span>}
         </div>
         <div>
-          <label htmlFor="">Senha</label>
+          <label htmlFor="password">Senha</label>
           <input
-            autoComplete="false"
+            autoComplete="off"
             type="password"
             placeholder="********"
             value={user.password}
@@ -89,12 +112,12 @@ const Register = () => {
         </div>
 
         <label htmlFor="remember">
-          <input type="checkbox" />
+          <input type="checkbox" id="remember" />
           Lembrar senha
         </label>
 
         <button type="submit">Cadastrar</button>
-        <Link to={"/"}>Já tem uma conta? Faça Login</Link>
+        <Link to="/">Já tem uma conta? Faça Login</Link>
       </form>
     </main>
   );

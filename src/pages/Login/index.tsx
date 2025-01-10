@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import IntersectImage from "../../../src/assets/IMG_logincadastro/Intersect.png";
 
+import { auth } from "../../firebaseConnection";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 
 const Login = () => {
@@ -21,7 +23,7 @@ const Login = () => {
     setUser({ ...user, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     const newErrors: FormErrorsInterface = {};
@@ -29,12 +31,19 @@ const Login = () => {
     else if (!/\S+@\S+\.\S+/.test(user.email))
       newErrors.email = "O email não é válido.";
     if (!user.password.trim()) newErrors.password = "Campo obrigatório";
-    else if (user.password.length < 7)
-      newErrors.password = "A senha deve ter pelo menos 7 caracteres.";
+    else if (user.password.length < 6)
+      newErrors.password = "A senha deve ter pelo menos 6 caracteres.";
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      alert("Formulário enviado com sucesso!");
+      try {
+        await signInWithEmailAndPassword(auth, user.email, user.password);
+        alert("Login realizado com sucesso!");
+      } catch (error) {
+        console.log("Erro ao fazer login: ", error);
+      }
+    } else {
+      alert("Preencha todos os campos corretamente!");
     }
   };
 
@@ -52,31 +61,31 @@ const Login = () => {
             value={user.email}
             onChange={handleInputChange}
             name="email"
-          />{" "}
+          />
           {errors.email && <span className={styles.erro}>{errors.email}</span>}
         </div>
         <div>
-          <label htmlFor="">Senha</label>
+          <label htmlFor="password">Senha</label>
           <input
-            autoComplete="false"
+            autoComplete="off"
             type="password"
             placeholder="********"
             value={user.password}
             onChange={handleInputChange}
             name="password"
-          />{" "}
+          />
           {errors.password && (
             <span className={styles.erro}>{errors.password}</span>
           )}
         </div>
 
         <label htmlFor="remember">
-          <input type="checkbox" />
+          <input type="checkbox" id="remember" />
           Lembrar senha
         </label>
 
         <button type="submit">Login</button>
-        <Link to={"/register"}>Não tem uma conta? Cadastre-se</Link>
+        <Link to="/register">Não tem uma conta? Cadastre-se</Link>
       </form>
     </main>
   );
