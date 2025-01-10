@@ -69,7 +69,6 @@ const Login = () => {
         <h3>
           <GiSpellBook className={styles.iconLogo} /> BookWorms
         </h3>
-
         <h2>
           <PiUserCircleThin className={styles.iconLogin} />
           Faça Login
@@ -101,9 +100,13 @@ const Login = () => {
             <span className={styles.erro}>{errors.password}</span>
           )}
         </div>
-
         <button type="submit">Login</button>
-        <Link to="/register">Não tem uma conta? Cadastre-se</Link>
+        <div className={styles.linkContainer}>
+          <p>Não tem uma conta?</p>
+          <Link to="/register" className={styles.linkRegister}>
+            Cadastre-se
+          </Link>
+        </div>
       </form>
     </main>
   );
