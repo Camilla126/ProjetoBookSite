@@ -4,6 +4,8 @@
   margin: 0;
   padding: 0;
   font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
 }
 :root {
   line-height: 1.5;

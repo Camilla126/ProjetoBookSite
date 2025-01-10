@@ -9,9 +9,52 @@
     margin-right: 30px;
   }
 
-  form {
+  .formContainer {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
+    width: 700px;
+    height: 700px;
+
+    h3 {
+      font-size: 30px;
+      font-family: "Lavishly Yours", serif;
+      font-weight: 400;
+
+      .iconLogo {
+        position: relative;
+        top: 5px;
+        font-size: 50px;
+        color: #f76e96;
+      }
+    }
+
+    h2 {
+      font-size: 70px;
+      font-family: "Montserrat", serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+
+      .iconLogin {
+        font-size: 130px;
+        display: block;
+        margin-left: 135px;
+        color: #f76e96;
+      }
+    }
+  }
+
+  .erro {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    color: red;
+  }
+
+  .form {
+    .iconCamp {
+      color: #f76e96;
+    }
   }
 }

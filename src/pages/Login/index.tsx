@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import IntersectImage from "../../../src/assets/IMG_logincadastro/Intersect.png";
 
+import { GiSpellBook } from "react-icons/gi";
+import { PiUserCircleThin } from "react-icons/pi";
+import { AiOutlineMail } from "react-icons/ai";
+import { RiLockPasswordLine } from "react-icons/ri";
+
 import { auth } from "../../firebaseConnection";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState, useEffect } from "react";
@@ -16,7 +21,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [remember, setRemember] = useState(false);
+
   const [errors, setErrors] = useState<FormErrorsInterface>({});
 
   useEffect(() => {
@@ -24,16 +29,11 @@ const Login = () => {
     const savedPassword = localStorage.getItem("password");
     if (savedEmail && savedPassword) {
       setUser({ email: savedEmail, password: savedPassword });
-      setRemember(true);
     }
   }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUser({ ...user, [event.target.name]: event.target.value });
-  };
-
-  const handleRememberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRemember(event.target.checked);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -53,14 +53,6 @@ const Login = () => {
         await signInWithEmailAndPassword(auth, user.email, user.password);
         alert("Login realizado com sucesso!");
 
-        if (remember) {
-          localStorage.setItem("email", user.email);
-          localStorage.setItem("password", user.password);
-        } else {
-          localStorage.removeItem("email");
-          localStorage.removeItem("password");
-        }
-
         setUser({ email: "", password: "" });
       } catch (error) {
         console.log("Erro ao fazer login: ", error);
@@ -73,11 +65,18 @@ const Login = () => {
   return (
     <main className={styles.main}>
       <img src={IntersectImage} alt="Book" />
-      <form onSubmit={handleSubmit}>
-        <h3>BookWorms</h3>
-        <h2>Faça Login</h2>
-        <div>
+      <form onSubmit={handleSubmit} className={styles.formContainer}>
+        <h3>
+          <GiSpellBook className={styles.iconLogo} /> BookWorms
+        </h3>
+
+        <h2>
+          <PiUserCircleThin className={styles.iconLogin} />
+          Faça Login
+        </h2>
+        <div className={styles.form}>
           <label>Email </label>
+          <AiOutlineMail className={styles.iconCamp} />;
           <input
             type="text"
             placeholder="Digite um @email"
@@ -87,8 +86,9 @@ const Login = () => {
           />
           {errors.email && <span className={styles.erro}>{errors.email}</span>}
         </div>
-        <div>
+        <div className={styles.form}>
           <label htmlFor="password">Senha</label>
+          <RiLockPasswordLine className={styles.iconCamp} />
           <input
             autoComplete="off"
             type="password"
@@ -101,16 +101,6 @@ const Login = () => {
             <span className={styles.erro}>{errors.password}</span>
           )}
         </div>
-
-        <label htmlFor="remember">
-          <input
-            type="checkbox"
-            id="remember"
-            checked={remember}
-            onChange={handleRememberChange}
-          />
-          Lembrar senha
-        </label>
 
         <button type="submit">Login</button>
         <Link to="/register">Não tem uma conta? Cadastre-se</Link>
