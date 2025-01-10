@@ -4,7 +4,7 @@ import IntersectImage from "../../../src/assets/IMG_logincadastro/Intersect.png"
 
 import { auth } from "../../firebaseConnection";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Login = () => {
   interface FormErrorsInterface {
@@ -16,11 +16,24 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+  const [remember, setRemember] = useState(false);
   const [errors, setErrors] = useState<FormErrorsInterface>({});
+
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("email");
+    const savedPassword = localStorage.getItem("password");
+    if (savedEmail && savedPassword) {
+      setUser({ email: savedEmail, password: savedPassword });
+      setRemember(true);
+    }
+  }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUser({ ...user, [event.target.name]: event.target.value });
+  };
+
+  const handleRememberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRemember(event.target.checked);
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -39,6 +52,16 @@ const Login = () => {
       try {
         await signInWithEmailAndPassword(auth, user.email, user.password);
         alert("Login realizado com sucesso!");
+
+        if (remember) {
+          localStorage.setItem("email", user.email);
+          localStorage.setItem("password", user.password);
+        } else {
+          localStorage.removeItem("email");
+          localStorage.removeItem("password");
+        }
+
+        setUser({ email: "", password: "" });
       } catch (error) {
         console.log("Erro ao fazer login: ", error);
       }
@@ -80,7 +103,12 @@ const Login = () => {
         </div>
 
         <label htmlFor="remember">
-          <input type="checkbox" id="remember" />
+          <input
+            type="checkbox"
+            id="remember"
+            checked={remember}
+            onChange={handleRememberChange}
+          />
           Lembrar senha
         </label>
 

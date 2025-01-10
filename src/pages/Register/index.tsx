@@ -5,7 +5,7 @@ import IntersectImage from "../../../src/assets/IMG_logincadastro/Intersect.png"
 import { auth } from "../../firebaseConnection";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Register = () => {
   interface FormErrorsInterface {
@@ -19,11 +19,29 @@ const Register = () => {
     email: "",
     password: "",
   });
-
+  const [remember, setRemember] = useState(false);
   const [errors, setErrors] = useState<FormErrorsInterface>({});
+
+  useEffect(() => {
+    const savedUsername = localStorage.getItem("username");
+    const savedEmail = localStorage.getItem("email");
+    const savedPassword = localStorage.getItem("password");
+    if (savedUsername && savedEmail && savedPassword) {
+      setUser({
+        username: savedUsername,
+        email: savedEmail,
+        password: savedPassword,
+      });
+      setRemember(true);
+    }
+  }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUser({ ...user, [event.target.name]: event.target.value });
+  };
+
+  const handleRememberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRemember(event.target.checked);
   };
 
   const handleRegister = async (event: React.FormEvent) => {
@@ -49,6 +67,16 @@ const Register = () => {
         await updateProfile(userCredential.user, {
           displayName: user.username,
         });
+
+        if (remember) {
+          localStorage.setItem("username", user.username);
+          localStorage.setItem("email", user.email);
+          localStorage.setItem("password", user.password);
+        } else {
+          localStorage.removeItem("username");
+          localStorage.removeItem("email");
+          localStorage.removeItem("password");
+        }
 
         setUser({ username: "", email: "", password: "" });
         alert("Cadastro realizado com sucesso!");
@@ -112,7 +140,12 @@ const Register = () => {
         </div>
 
         <label htmlFor="remember">
-          <input type="checkbox" id="remember" />
+          <input
+            type="checkbox"
+            id="remember"
+            checked={remember}
+            onChange={handleRememberChange}
+          />
           Lembrar senha
         </label>
 
