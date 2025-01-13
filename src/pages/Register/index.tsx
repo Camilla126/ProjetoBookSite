@@ -3,7 +3,7 @@ import IntersectImage from "../../../src/assets/IMG_logincadastro/Intersect.png"
 import styles from "../Register/styles.module.scss";
 
 import { GiSpellBook } from "react-icons/gi";
-import { PiUserCircleThin } from "react-icons/pi";
+import { PiUserCircleFill } from "react-icons/pi";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { PiUserLight } from "react-icons/pi";
@@ -76,14 +76,13 @@ const Register = () => {
       <img src={IntersectImage} alt="Book" />
       <form onSubmit={handleRegister} className={styles.formContainer}>
         <h3>
-          {" "}
           <GiSpellBook className={styles.iconLogo} /> BookWorms
         </h3>
         <h2>
-          {" "}
-          <PiUserCircleThin className={styles.iconRegister} />
+          <PiUserCircleFill className={styles.iconRegister} />
           Cadastre-se
         </h2>
+
         <div className={styles.form}>
           <label>Nome de usuário</label>
           <PiUserLight className={styles.iconUser} />
@@ -131,7 +130,7 @@ const Register = () => {
 
         <button type="submit">Cadastrar</button>
         <div className={styles.linkContainer}>
-          <p>Já tem uma conta?</p>{" "}
+          <p>Já tem uma conta?</p>
           <Link to="/" className={styles.linkRegister}>
             Faça Login
           </Link>
