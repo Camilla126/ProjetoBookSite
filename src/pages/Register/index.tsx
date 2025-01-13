@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import IntersectImage from "../../../src/assets/IMG_logincadastro/Intersect.png";
 import styles from "../Register/styles.module.scss";
+
 import { GiSpellBook } from "react-icons/gi";
 import { PiUserCircleThin } from "react-icons/pi";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { PiUserLight } from "react-icons/pi";
 
 import { auth } from "../../firebaseConnection";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -82,12 +84,12 @@ const Register = () => {
           <PiUserCircleThin className={styles.iconRegister} />
           Cadastre-se
         </h2>
-
         <div className={styles.form}>
           <label>Nome de usuário</label>
+          <PiUserLight className={styles.iconUser} />
           <input
             type="text"
-            placeholder="Usuário Anônimo"
+            placeholder="Usuário"
             value={user.username}
             onChange={handleInputChange}
             name="username"
@@ -96,10 +98,9 @@ const Register = () => {
             <span className={styles.erro}>{errors.username}</span>
           )}
         </div>
-
         <div className={styles.form}>
           <label>Email</label>
-          <AiOutlineMail className={styles.iconCamp} />
+          <AiOutlineMail className={styles.iconEmail} />
           <input
             type="text"
             placeholder="Digite um @email"
@@ -111,7 +112,7 @@ const Register = () => {
         </div>
         <div className={styles.form}>
           <label htmlFor="password">Senha</label>
-          <RiLockPasswordLine className={styles.iconCamp} />
+          <RiLockPasswordLine className={styles.iconPassword} />
           <input
             type="password"
             placeholder="********"
@@ -123,11 +124,10 @@ const Register = () => {
             <span className={styles.erro}>{errors.password}</span>
           )}
         </div>
-
-        <label>
-          <input type="checkbox" />
-          Lembrar senha
-        </label>
+        <div className={styles.remember}>
+          <input type="checkbox" id="check" />
+          <label className={styles.rememberPassword}> Lembrar senha</label>
+        </div>
 
         <button type="submit">Cadastrar</button>
         <div className={styles.linkContainer}>
