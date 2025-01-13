@@ -77,7 +77,7 @@ const Login = () => {
         </h2>
         <div className={styles.form}>
           <label>Email </label>
-          <AiOutlineMail className={styles.iconCamp} />;
+          <AiOutlineMail className={styles.iconCamp} />
           <input
             type="text"
             placeholder="Digite um @email"

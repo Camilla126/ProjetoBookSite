@@ -32,15 +32,15 @@
     }
 
     h2 {
-      font-size: 60px;
+      font-size: 50px;
       font-family: "Montserrat", serif;
       font-optical-sizing: auto;
       font-weight: 500;
     }
     .iconLogin {
-      font-size: 115px;
+      font-size: 100px;
       display: block;
-      margin-left: 115px;
+      margin-left: 90px;
       color: #f76e96;
     }
   }
@@ -59,15 +59,16 @@
       font-size: 25px;
     }
     input {
+      outline: none;
       margin-bottom: 20px;
-      width: 500px;
-      height: 10px;
+      width: 570px;
+      height: 75px;
       display: block;
       justify-content: center;
       align-items: center;
       border-radius: 10px;
       font-size: 16px;
-      padding: 30px 35px;
+
       border: none;
       box-shadow: 0 6px 6px rgba(0, 0, 0, 0.329);
     }
@@ -75,25 +76,36 @@
     input::placeholder {
       color: #eae1e1;
       font-size: 25px;
+      position: relative;
+
+      padding: 20px;
     }
 
     .iconCamp {
+      position: relative;
+      top: 60px;
+      right: 60px;
+      font-size: 35px;
       color: #f76e96;
     }
   }
   button {
     color: #ffff;
     width: 570px;
-    height: 80px;
+    height: 85px;
     border-radius: 10px;
     background-color: rgb(17, 17, 17);
     font-size: 40px;
     font-weight: 400;
-    margin-top: 20px;
+    margin-top: 5px;
   }
 
   .linkContainer {
+    font-size: 20px;
+    display: flex;
     .linkRegister {
+      text-decoration: none;
+      margin-left: 10px;
       color: #f76e96;
     }
   }
