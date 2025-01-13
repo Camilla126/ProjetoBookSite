@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
-import styles from "../Login/styles.module.scss";
 import IntersectImage from "../../../src/assets/IMG_logincadastro/Intersect.png";
+import styles from "../Register/styles.module.scss";
+import { GiSpellBook } from "react-icons/gi";
+import { PiUserCircleThin } from "react-icons/pi";
+import { AiOutlineMail } from "react-icons/ai";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 import { auth } from "../../firebaseConnection";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -68,11 +72,18 @@ const Register = () => {
   return (
     <main className={styles.main}>
       <img src={IntersectImage} alt="Book" />
-      <form onSubmit={handleRegister}>
-        <h3>BookWorms</h3>
-        <h2>Cadastre-se</h2>
+      <form onSubmit={handleRegister} className={styles.formContainer}>
+        <h3>
+          {" "}
+          <GiSpellBook className={styles.iconLogo} /> BookWorms
+        </h3>
+        <h2>
+          {" "}
+          <PiUserCircleThin className={styles.iconRegister} />
+          Cadastre-se
+        </h2>
 
-        <div>
+        <div className={styles.form}>
           <label>Nome de usuário</label>
           <input
             type="text"
@@ -86,8 +97,9 @@ const Register = () => {
           )}
         </div>
 
-        <div>
+        <div className={styles.form}>
           <label>Email</label>
+          <AiOutlineMail className={styles.iconCamp} />
           <input
             type="text"
             placeholder="Digite um @email"
@@ -97,8 +109,9 @@ const Register = () => {
           />
           {errors.email && <span className={styles.erro}>{errors.email}</span>}
         </div>
-        <div>
+        <div className={styles.form}>
           <label htmlFor="password">Senha</label>
+          <RiLockPasswordLine className={styles.iconCamp} />
           <input
             type="password"
             placeholder="********"
@@ -117,7 +130,12 @@ const Register = () => {
         </label>
 
         <button type="submit">Cadastrar</button>
-        <Link to="/">Já tem uma conta? Faça Login</Link>
+        <div className={styles.linkContainer}>
+          <p>Já tem uma conta?</p>{" "}
+          <Link to="/" className={styles.linkRegister}>
+            Faça Login
+          </Link>
+        </div>
       </form>
     </main>
   );
