@@ -14,6 +14,7 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
+    justify-content: center;
     width: 700px;
     height: 700px;
 
@@ -31,17 +32,16 @@
     }
 
     h2 {
-      font-size: 70px;
+      font-size: 60px;
       font-family: "Montserrat", serif;
       font-optical-sizing: auto;
       font-weight: 500;
-
-      .iconLogin {
-        font-size: 130px;
-        display: block;
-        margin-left: 135px;
-        color: #f76e96;
-      }
+    }
+    .iconLogin {
+      font-size: 115px;
+      display: block;
+      margin-left: 115px;
+      color: #f76e96;
     }
   }
 
@@ -56,12 +56,30 @@
     label {
     }
     input {
+      width: 500px;
+      height: 14px;
+      display: block;
+      justify-content: center;
+      align-items: center;
+      border-radius: 19px;
+      font-size: 16px;
+      padding: 30px 35px;
+
+      input ::placeholder {
+        color: red;
+      }
     }
     .iconCamp {
       color: #f76e96;
     }
   }
   button {
+    color: #ffff;
+    width: 560px;
+    height: 80px;
+    border-radius: 19px;
+    background-color: rgb(17, 17, 17);
+    font-size: 30px;
   }
 
   .linkContainer {
