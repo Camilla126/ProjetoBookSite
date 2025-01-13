@@ -52,7 +52,6 @@ const Register = () => {
 
         setUser({ username: "", email: "", password: "" });
 
-        console.log("Campos limpos:", user);
         alert("Cadastro realizado com sucesso!");
       } catch (error: unknown) {
         let errorMessage = "Erro desconhecido";
@@ -101,7 +100,6 @@ const Register = () => {
         <div>
           <label htmlFor="password">Senha</label>
           <input
-            autoComplete="off"
             type="password"
             placeholder="********"
             value={user.password}
@@ -113,7 +111,7 @@ const Register = () => {
           )}
         </div>
 
-        <label htmlFor="remember">
+        <label>
           <input type="checkbox" />
           Lembrar senha
         </label>

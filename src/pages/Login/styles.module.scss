@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: center;
     width: 700px;
-    height: 700px;
+    height: 800px;
 
     h3 {
       font-size: 30px;
@@ -50,36 +50,46 @@
     align-items: center;
     justify-content: center;
     color: red;
+    position: relative;
+    bottom: 10px;
   }
 
   .form {
     label {
+      font-size: 25px;
     }
     input {
+      margin-bottom: 20px;
       width: 500px;
-      height: 14px;
+      height: 10px;
       display: block;
       justify-content: center;
       align-items: center;
-      border-radius: 19px;
+      border-radius: 10px;
       font-size: 16px;
       padding: 30px 35px;
-
-      input ::placeholder {
-        color: red;
-      }
+      border: none;
+      box-shadow: 0 6px 6px rgba(0, 0, 0, 0.329);
     }
+
+    input::placeholder {
+      color: #eae1e1;
+      font-size: 25px;
+    }
+
     .iconCamp {
       color: #f76e96;
     }
   }
   button {
     color: #ffff;
-    width: 560px;
+    width: 570px;
     height: 80px;
-    border-radius: 19px;
+    border-radius: 10px;
     background-color: rgb(17, 17, 17);
-    font-size: 30px;
+    font-size: 40px;
+    font-weight: 400;
+    margin-top: 20px;
   }
 
   .linkContainer {

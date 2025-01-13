@@ -25,6 +25,8 @@ const Login = () => {
   const [errors, setErrors] = useState<FormErrorsInterface>({});
 
   useEffect(() => {
+    localStorage.removeItem("email");
+    localStorage.removeItem("password");
     const savedEmail = localStorage.getItem("email");
     const savedPassword = localStorage.getItem("password");
     if (savedEmail && savedPassword) {
@@ -82,6 +84,7 @@ const Login = () => {
             value={user.email}
             onChange={handleInputChange}
             name="email"
+            autoComplete="off"
           />
           {errors.email && <span className={styles.erro}>{errors.email}</span>}
         </div>
@@ -89,12 +92,12 @@ const Login = () => {
           <label htmlFor="password">Senha</label>
           <RiLockPasswordLine className={styles.iconCamp} />
           <input
-            autoComplete="off"
             type="password"
             placeholder="********"
             value={user.password}
             onChange={handleInputChange}
             name="password"
+            autoComplete="off"
           />
           {errors.password && (
             <span className={styles.erro}>{errors.password}</span>
