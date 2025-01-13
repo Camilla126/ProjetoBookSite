@@ -6,7 +6,6 @@
     margin-left: 50px;
     width: 850px;
     height: 800px;
-    margin-right: 30px;
   }
 
   .formContainer {
@@ -57,18 +56,19 @@
   .form {
     label {
       font-size: 25px;
+      font-weight: 300;
     }
     input {
       outline: none;
       margin-bottom: 20px;
-      width: 570px;
-      height: 75px;
+      width: 440px;
+      height: 10px;
       display: block;
       justify-content: center;
       align-items: center;
       border-radius: 10px;
-      font-size: 16px;
-
+      font-size: 20px;
+      padding: 30px 65px;
       border: none;
       box-shadow: 0 6px 6px rgba(0, 0, 0, 0.329);
     }
@@ -77,8 +77,6 @@
       color: #eae1e1;
       font-size: 25px;
       position: relative;
-
-      padding: 20px;
     }
 
     .iconCamp {
@@ -98,6 +96,12 @@
     font-size: 40px;
     font-weight: 400;
     margin-top: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    color: #868080;
+    transition: 1s;
   }
 
   .linkContainer {
@@ -106,7 +110,10 @@
     .linkRegister {
       text-decoration: none;
       margin-left: 10px;
+    }
+    .linkRegister:hover {
       color: #f76e96;
+      text-decoration: underline;
     }
   }
 }
