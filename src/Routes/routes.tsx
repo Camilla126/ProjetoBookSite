@@ -8,6 +8,7 @@ import MyBooks from "../Pages/MyBooks";
 import MyStory from "../Pages/MyStory";
 import Saved from "../Pages/Saved";
 import Feed from "../Pages/Feed";
+import Admin from "../Pages/Admin";
 
 const MainRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const MainRoutes = () => {
       <Route path="/mystory" element={<MyStory />} />
       <Route path="/mybooks" element={<MyBooks />} />
       <Route path="/bestreader" element={<BestReader />} />
+      <Route path="/admin" element={<Admin />} />
     </Routes>
   );
 };
