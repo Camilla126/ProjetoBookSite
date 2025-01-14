@@ -96,33 +96,6 @@
     }
   }
 
-  .remember input[type="checkbox"] {
-    appearance: none;
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid #ff006a;
-    border-radius: 0.4rem;
-
-    position: relative;
-    right: 160px;
-    bottom: 15px;
-  }
-
-  .remember label {
-    font-size: 24px;
-    position: relative;
-    right: 160px;
-    bottom: 23px;
-  }
-
-  .remember input[type="checkbox"]:checked::before {
-    content: "🗸";
-    font-size: 2.2rem;
-    position: absolute;
-    top: -0.5rem;
-    color: #ff006a;
-  }
-
   button {
     color: #ffff;
     width: 570px;
@@ -131,10 +104,7 @@
     background-color: rgb(17, 17, 17);
     font-size: 40px;
     font-weight: 400;
-    margin-top: 5px;
     cursor: pointer;
-    position: relative;
-    bottom: 15px;
   }
 
   button:hover {
@@ -146,7 +116,7 @@
     font-size: 20px;
     display: flex;
     position: relative;
-    bottom: 20px;
+
     .linkRegister {
       text-decoration: none;
       margin-left: 10px;

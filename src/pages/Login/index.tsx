@@ -25,8 +25,6 @@ const Login = () => {
   const [errors, setErrors] = useState<FormErrorsInterface>({});
 
   useEffect(() => {
-    localStorage.removeItem("email");
-    localStorage.removeItem("password");
     const savedEmail = localStorage.getItem("email");
     const savedPassword = localStorage.getItem("password");
     if (savedEmail && savedPassword) {

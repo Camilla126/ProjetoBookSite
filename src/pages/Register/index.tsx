@@ -56,6 +56,10 @@ const Register = () => {
           displayName: user.username,
         });
 
+        // Salvar informações de login no localStorage
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("password", user.password);
+
         setUser({ username: "", email: "", password: "" });
 
         alert("Cadastro realizado com sucesso!");
@@ -123,11 +127,6 @@ const Register = () => {
             <span className={styles.erro}>{errors.password}</span>
           )}
         </div>
-        <div className={styles.remember}>
-          <input type="checkbox" id="check" />
-          <label className={styles.rememberPassword}> Lembrar senha</label>
-        </div>
-
         <button type="submit">Cadastrar</button>
         <div className={styles.linkContainer}>
           <p>Já tem uma conta?</p>
