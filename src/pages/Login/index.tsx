@@ -10,6 +10,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { auth } from "../../firebaseConnection";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Login = () => {
   interface FormErrorsInterface {
@@ -51,14 +52,14 @@ const Login = () => {
     if (Object.keys(newErrors).length === 0) {
       try {
         await signInWithEmailAndPassword(auth, user.email, user.password);
-        alert("Login realizado com sucesso!");
+        toast.success("Login realizado com sucesso!");
 
         setUser({ email: "", password: "" });
-      } catch (error) {
-        console.log("Erro ao fazer login: ", error);
+      } catch {
+        toast.error("Erro ao fazer login.");
       }
     } else {
-      alert("Preencha todos os campos corretamente!");
+      toast.error("Preencha todos os campos corretamente!");
     }
   };
 

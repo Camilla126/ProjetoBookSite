@@ -12,6 +12,7 @@ import { auth } from "../../firebaseConnection";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Register = () => {
   interface FormErrorsInterface {
@@ -56,22 +57,17 @@ const Register = () => {
           displayName: user.username,
         });
 
-        // Salvar informações de login no localStorage
         localStorage.setItem("email", user.email);
         localStorage.setItem("password", user.password);
 
         setUser({ username: "", email: "", password: "" });
 
-        alert("Cadastro realizado com sucesso!");
-      } catch (error: unknown) {
-        let errorMessage = "Erro desconhecido";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        alert(`Erro ao fazer cadastro: ${errorMessage}`);
+        toast.success("Cadastro realizado!");
+      } catch {
+        toast.error("Erro ao fazer cadastro.");
       }
     } else {
-      alert("Preencha todos os campos corretamente!");
+      toast.error("Preencha todos os campos corretamente!");
     }
   };
 
