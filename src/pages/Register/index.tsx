@@ -8,6 +8,8 @@ import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { PiUserLight } from "react-icons/pi";
 
+import { useNavigate } from "react-router-dom";
+
 import { auth } from "../../firebaseConnection";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
@@ -27,6 +29,7 @@ const Register = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
   const [errors, setErrors] = useState<FormErrorsInterface>({});
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,6 +64,8 @@ const Register = () => {
         localStorage.setItem("password", user.password);
 
         setUser({ username: "", email: "", password: "" });
+
+        navigate("/home", { replace: true });
 
         toast.success("Cadastro realizado!");
       } catch {

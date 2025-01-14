@@ -7,6 +7,8 @@ import { PiUserCircleThin } from "react-icons/pi";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 
+import { useNavigate } from "react-router-dom";
+
 import { auth } from "../../firebaseConnection";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState, useEffect } from "react";
@@ -24,6 +26,7 @@ const Login = () => {
   });
 
   const [errors, setErrors] = useState<FormErrorsInterface>({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("email");
@@ -52,7 +55,8 @@ const Login = () => {
     if (Object.keys(newErrors).length === 0) {
       try {
         await signInWithEmailAndPassword(auth, user.email, user.password);
-        toast.success("Login realizado com sucesso!");
+        toast.success("Login concluído!");
+        navigate("/home", { replace: true });
 
         setUser({ email: "", password: "" });
       } catch {
@@ -83,7 +87,6 @@ const Login = () => {
             value={user.email}
             onChange={handleInputChange}
             name="email"
-            autoComplete="off"
           />
           {errors.email && <span className={styles.erro}>{errors.email}</span>}
         </div>
@@ -96,7 +99,6 @@ const Login = () => {
             value={user.password}
             onChange={handleInputChange}
             name="password"
-            autoComplete="off"
           />
           {errors.password && (
             <span className={styles.erro}>{errors.password}</span>
