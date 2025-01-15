@@ -7,70 +7,16 @@ import { PiUserCircleThin } from "react-icons/pi";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-import { auth } from "../../firebaseConnection";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-
-const Login = () => {
-  interface FormErrorsInterface {
-    email?: string;
-    password?: string;
-  }
-
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
-
-  const [errors, setErrors] = useState<FormErrorsInterface>({});
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const savedEmail = localStorage.getItem("email");
-    const savedPassword = localStorage.getItem("password");
-    if (savedEmail && savedPassword) {
-      setUser({ email: savedEmail, password: savedPassword });
-    }
-  }, []);
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUser({ ...user, [event.target.name]: event.target.value });
-  };
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    const newErrors: FormErrorsInterface = {};
-    if (!user.email.trim()) newErrors.email = "Campo obrigatório";
-    else if (!/\S+@\S+\.\S+/.test(user.email))
-      newErrors.email = "O email não é válido.";
-    if (!user.password.trim()) newErrors.password = "Campo obrigatório";
-    else if (user.password.length < 6)
-      newErrors.password = "A senha deve ter pelo menos 6 caracteres.";
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      try {
-        await signInWithEmailAndPassword(auth, user.email, user.password);
-        toast.success("Login concluído!");
-        navigate("/home", { replace: true });
-
-        setUser({ email: "", password: "" });
-      } catch {
-        toast.error("Erro ao fazer login.");
-      }
-    } else {
-      toast.error("Preencha todos os campos corretamente!");
-    }
-  };
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <main className={styles.main}>
       <img src={IntersectImage} alt="Book" />
-      <form onSubmit={handleSubmit} className={styles.formContainer}>
+      <form className={styles.formContainer}>
         <h3>
           <GiSpellBook className={styles.iconLogo} /> BookWorms
         </h3>
@@ -84,11 +30,10 @@ const Login = () => {
           <input
             type="text"
             placeholder="Digite um @email"
-            value={user.email}
-            onChange={handleInputChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             name="email"
           />
-          {errors.email && <span className={styles.erro}>{errors.email}</span>}
         </div>
         <div className={styles.form}>
           <label htmlFor="password">Senha</label>
@@ -96,13 +41,10 @@ const Login = () => {
           <input
             type="password"
             placeholder="********"
-            value={user.password}
-            onChange={handleInputChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             name="password"
           />
-          {errors.password && (
-            <span className={styles.erro}>{errors.password}</span>
-          )}
         </div>
         <button type="submit">Login</button>
         <div className={styles.linkContainer}>
@@ -114,6 +56,4 @@ const Login = () => {
       </form>
     </main>
   );
-};
-
-export default Login;
+}
