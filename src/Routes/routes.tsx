@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Layout from "./layout";
 
 import Home from "../Pages/Home";
@@ -9,6 +9,8 @@ import MyBooks from "../Pages/MyBooks";
 import MyStory from "../Pages/MyStory";
 import Saved from "../Pages/Saved";
 import Feed from "../Pages/Feed";
+
+import { BrowserRouter } from "react-router-dom";
 
 import Private from "./private";
 

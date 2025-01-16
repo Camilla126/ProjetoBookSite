@@ -7,6 +7,8 @@ import { PiUserCircleThin } from "react-icons/pi";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 
+import { useNavigate } from "react-router-dom";
+
 import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 
 import { useState, useContext } from "react";
@@ -14,6 +16,7 @@ import { useState, useContext } from "react";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const { signIn } = useContext(AuthContext) as AuthContextInterface;
 
@@ -21,6 +24,7 @@ export default function Login() {
     e.preventDefault();
     if (email !== "" && password !== "") {
       signIn(email, password);
+      navigate("/home");
     }
   };
 

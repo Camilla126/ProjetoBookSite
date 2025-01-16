@@ -28,6 +28,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     console.log(email);
     console.log(password);
     toast.success("LOGADO COM SUCESSO");
+    console.log("Tentando redirecionar para home");
   }
 
   async function signUp(email: string, password: string, name: string) {
