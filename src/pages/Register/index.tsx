@@ -8,7 +8,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { PiUserLight } from "react-icons/pi";
 
-import { AuthContext } from "../../contexts/auth";
+import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 import { useState, useContext } from "react";
 
 export default function Register() {
@@ -16,15 +16,17 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signUp } = useContext(AuthContext);
+  const { signUp, loadingAuth } = useContext(
+    AuthContext
+  ) as AuthContextInterface;
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (username !== "" && email !== "" && password !== "") {
-      signUp(email, password, username);
+      await signUp(email, password, username);
     }
-  }
+  };
 
   return (
     <main className={styles.main}>
@@ -71,7 +73,9 @@ export default function Register() {
             name="password"
           />
         </div>
-        <button type="submit">Cadastrar</button>
+        <button type="submit">
+          {loadingAuth ? "Carregando..." : "Cadastrar"}
+        </button>
         <div className={styles.linkContainer}>
           <p>Já tem uma conta?</p>
           <Link to="/" className={styles.linkRegister}>

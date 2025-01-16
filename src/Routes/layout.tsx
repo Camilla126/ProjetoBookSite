@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Header from "../Components/Header"; // Componente do cabeçalho
+import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
 const Layout = () => {

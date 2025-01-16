@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC, ReactNode } from "react";
 import { auth } from "../firebaseConnection";
 import { onAuthStateChanged } from "firebase/auth";
 import { Navigate } from "react-router-dom";
 
-const Private = ({ children }) => {
+const Private: FC<{ children: ReactNode }> = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [signed, setSigned] = useState(false);
 

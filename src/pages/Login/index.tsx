@@ -7,7 +7,7 @@ import { PiUserCircleThin } from "react-icons/pi";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 
-import { AuthContext } from "../../contexts/auth";
+import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 
 import { useState, useContext } from "react";
 
@@ -15,14 +15,14 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext) as AuthContextInterface;
 
-  function handleSignIn(e) {
+  const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email !== "" && password !== "") {
       signIn(email, password);
     }
-  }
+  };
 
   return (
     <main className={styles.main}>

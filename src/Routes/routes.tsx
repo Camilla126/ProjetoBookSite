@@ -10,7 +10,7 @@ import MyStory from "../Pages/MyStory";
 import Saved from "../Pages/Saved";
 import Feed from "../Pages/Feed";
 
-import Private from "./Private";
+import Private from "./private";
 
 const MainRoutes = () => {
   return (
