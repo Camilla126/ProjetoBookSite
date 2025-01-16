@@ -7,16 +7,27 @@ import { PiUserCircleThin } from "react-icons/pi";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 
-import { useState } from "react";
+import { AuthContext } from "../../contexts/auth";
+
+import { useState, useContext } from "react";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { signIn } = useContext(AuthContext);
+
+  function handleSignIn(e) {
+    e.preventDefault();
+    if (email !== "" && password !== "") {
+      signIn(email, password);
+    }
+  }
+
   return (
     <main className={styles.main}>
       <img src={IntersectImage} alt="Book" />
-      <form className={styles.formContainer}>
+      <form className={styles.formContainer} onSubmit={handleSignIn}>
         <h3>
           <GiSpellBook className={styles.iconLogo} /> BookWorms
         </h3>

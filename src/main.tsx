@@ -7,9 +7,13 @@ import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
+import AuthProvider from "./contexts/auth";
+
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ToastContainer autoClose={3000} />
-    <MainRoutes />
+    <AuthProvider>
+      <ToastContainer autoClose={3000} />
+      <MainRoutes />
+    </AuthProvider>
   </React.StrictMode>
 );

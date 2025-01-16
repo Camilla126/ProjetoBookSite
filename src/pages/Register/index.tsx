@@ -8,78 +8,28 @@ import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { PiUserLight } from "react-icons/pi";
 
-import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/auth";
+import { useState, useContext } from "react";
 
-import { auth } from "../../firebaseConnection";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+export default function Register() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-import { useState } from "react";
-import { toast } from "react-toastify";
+  const { signUp } = useContext(AuthContext);
 
-const Register = () => {
-  interface FormErrorsInterface {
-    username?: string;
-    email?: string;
-    password?: string;
-  }
+  function handleSubmit(e) {
+    e.preventDefault();
 
-  const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-
-  const navigate = useNavigate();
-  const [errors, setErrors] = useState<FormErrorsInterface>({});
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUser({ ...user, [event.target.name]: event.target.value });
-  };
-
-  const handleRegister = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    const newErrors: FormErrorsInterface = {};
-    if (!user.username.trim()) newErrors.username = "Campo obrigatório";
-    if (!user.email.trim()) newErrors.email = "Campo obrigatório";
-    else if (!/\S+@\S+\.\S+/.test(user.email))
-      newErrors.email = "O email não é válido.";
-    if (!user.password.trim()) newErrors.password = "Campo obrigatório";
-    else if (user.password.length < 6)
-      newErrors.password = "A senha deve ter pelo menos 6 caracteres.";
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      try {
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          user.email,
-          user.password
-        );
-        await updateProfile(userCredential.user, {
-          displayName: user.username,
-        });
-
-        localStorage.setItem("email", user.email);
-        localStorage.setItem("password", user.password);
-
-        setUser({ username: "", email: "", password: "" });
-
-        navigate("/home", { replace: true });
-
-        toast.success("Cadastro realizado!");
-      } catch {
-        toast.error("Erro ao fazer cadastro.");
-      }
-    } else {
-      toast.error("Preencha todos os campos corretamente!");
+    if (username !== "" && email !== "" && password !== "") {
+      signUp(email, password, username);
     }
-  };
+  }
 
   return (
     <main className={styles.main}>
       <img src={IntersectImage} alt="Book" />
-      <form onSubmit={handleRegister} className={styles.formContainer}>
+      <form className={styles.formContainer} onSubmit={handleSubmit}>
         <h3>
           <GiSpellBook className={styles.iconLogo} /> BookWorms
         </h3>
@@ -94,13 +44,10 @@ const Register = () => {
           <input
             type="text"
             placeholder="Usuário"
-            value={user.username}
-            onChange={handleInputChange}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             name="username"
           />
-          {errors.username && (
-            <span className={styles.erro}>{errors.username}</span>
-          )}
         </div>
         <div className={styles.form}>
           <label>Email</label>
@@ -108,11 +55,10 @@ const Register = () => {
           <input
             type="text"
             placeholder="Digite um @email"
-            value={user.email}
-            onChange={handleInputChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             name="email"
           />
-          {errors.email && <span className={styles.erro}>{errors.email}</span>}
         </div>
         <div className={styles.form}>
           <label htmlFor="password">Senha</label>
@@ -120,13 +66,10 @@ const Register = () => {
           <input
             type="password"
             placeholder="********"
-            value={user.password}
-            onChange={handleInputChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             name="password"
           />
-          {errors.password && (
-            <span className={styles.erro}>{errors.password}</span>
-          )}
         </div>
         <button type="submit">Cadastrar</button>
         <div className={styles.linkContainer}>
@@ -138,6 +81,4 @@ const Register = () => {
       </form>
     </main>
   );
-};
-
-export default Register;
+}
