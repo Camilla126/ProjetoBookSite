@@ -8,6 +8,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { PiUserLight } from "react-icons/pi";
 
+import { useNavigate } from "react-router-dom";
 import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 import { useState, useContext } from "react";
 
@@ -15,6 +16,7 @@ export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const { signUp, loadingAuth } = useContext(
     AuthContext
@@ -25,6 +27,7 @@ export default function Register() {
 
     if (username !== "" && email !== "" && password !== "") {
       await signUp(email, password, username);
+      navigate("/home");
     }
   };
 

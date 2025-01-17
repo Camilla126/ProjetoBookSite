@@ -1,14 +1,16 @@
-import { useState, createContext, useEffect, FC, ReactNode } from "react";
+import { useState, createContext, FC, ReactNode, useEffect } from "react";
 import { auth, db } from "../firebaseConnection";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 import { toast } from "react-toastify";
+
 export interface UserInterface {
   uid: string;
   name: string;
   email: string;
 }
+
 export interface AuthContextInterface {
   signed: boolean;
   user: UserInterface | null;
@@ -16,6 +18,7 @@ export interface AuthContextInterface {
   signUp: (email: string, password: string, name: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
 }
+
 export const AuthContext = createContext<AuthContextInterface | undefined>(
   undefined
 );
@@ -23,6 +26,20 @@ export const AuthContext = createContext<AuthContextInterface | undefined>(
 const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserInterface | null>(null);
   const [loadingAuth, setLoadingAuth] = useState(false);
+  const saveUserToLocalStorage = (userData: UserInterface) => {
+    localStorage.setItem("user", JSON.stringify(userData));
+  };
+
+  const loadUserFromLocalStorage = () => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  };
+
+  useEffect(() => {
+    loadUserFromLocalStorage();
+  }, []);
 
   async function signIn(email: string, password: string) {
     console.log(email);
@@ -40,15 +57,19 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
         email,
         password
       );
-      await setDoc(doc(db, "users", userResponse.user.uid), {
+      const userData = {
         uid: userResponse.user.uid,
-        name: name,
-        email: userResponse.user.email,
-      });
+        name,
+        email: userResponse.user.email!,
+      };
 
-      setUser({ name, email, uid: userResponse.user.uid });
+      await setDoc(doc(db, "users", userResponse.user.uid), userData);
+
+      setUser(userData);
+      saveUserToLocalStorage(userData);
+      toast.success("Cadastro realizado com sucesso!");
     } catch {
-      toast.error("Cadastro não realizado!");
+      toast.error("Erro ao cadastrar!");
     } finally {
       setLoadingAuth(false);
     }
