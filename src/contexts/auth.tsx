@@ -1,7 +1,10 @@
 import { useState, createContext, FC, ReactNode, useEffect } from "react";
 import { auth, db } from "../firebaseConnection";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import { toast } from "react-toastify";
 
@@ -26,6 +29,7 @@ export const AuthContext = createContext<AuthContextInterface | undefined>(
 const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserInterface | null>(null);
   const [loadingAuth, setLoadingAuth] = useState(false);
+
   const saveUserToLocalStorage = (userData: UserInterface) => {
     localStorage.setItem("user", JSON.stringify(userData));
   };
@@ -42,10 +46,32 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   async function signIn(email: string, password: string) {
-    console.log(email);
-    console.log(password);
-    toast.success("LOGADO COM SUCESSO");
-    console.log("Tentando redirecionar para home");
+    try {
+      setLoadingAuth(true);
+
+      const userResponse = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const docRef = doc(db, "users", userResponse.user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const userData = docSnap.data() as UserInterface;
+        setUser(userData);
+        saveUserToLocalStorage(userData);
+
+        toast.success("Login realizado com sucesso!");
+      } else {
+        toast.error("Email ou senha incorretos. Tente novamente.");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Ops! Algo deu errado.");
+    } finally {
+      setLoadingAuth(false);
+    }
   }
 
   async function signUp(email: string, password: string, name: string) {
@@ -67,9 +93,8 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
       setUser(userData);
       saveUserToLocalStorage(userData);
+
       toast.success("Cadastro realizado com sucesso!");
-    } catch {
-      toast.error("Erro ao cadastrar!");
     } finally {
       setLoadingAuth(false);
     }

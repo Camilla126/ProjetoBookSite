@@ -8,7 +8,6 @@ import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 
 import { useNavigate } from "react-router-dom";
-
 import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 
 import { useState, useContext } from "react";
@@ -16,16 +15,17 @@ import { useState, useContext } from "react";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const { signIn } = useContext(AuthContext) as AuthContextInterface;
+  const navigate = useNavigate();
 
-  const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (email !== "" && password !== "") {
-      signIn(email, password);
-      navigate("/home");
+      await signIn(email, password);
     }
+    navigate("/home");
   };
 
   return (
