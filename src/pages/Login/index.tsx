@@ -10,23 +10,41 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebaseConnection";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signIn } = useContext(AuthContext) as AuthContextInterface;
+  const { signIn, signed } = useContext(AuthContext) as AuthContextInterface;
   const navigate = useNavigate();
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (email !== "" && password !== "") {
-      await signIn(email, password);
+      try {
+        await signIn(email, password);
+
+        navigate("/home");
+      } catch (error) {
+        console.error("Erro no console", error);
+      }
     }
-    navigate("/home");
   };
+
+  // useEffect(() => {
+  //   const unsub = onAuthStateChanged(auth, (user) => {
+  //     console.log("Userrr", user);
+  //     if (user) {
+  //       navigate("/home");
+  //     }
+  //   });
+
+  //   return () => unsub();
+  // }, []);
 
   return (
     <main className={styles.main}>

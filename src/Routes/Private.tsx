@@ -5,23 +5,25 @@ import { Navigate } from "react-router-dom";
 
 const Private: FC<{ children: ReactNode }> = ({ children }) => {
   const [signed, setSigned] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
+      console.log("Userrr", user);
       if (user) {
-        const userData = {
-          uid: user.uid,
-          email: user.email,
-        };
-        localStorage.setItem("@detailUser", JSON.stringify(userData));
         setSigned(true);
       } else {
         setSigned(false);
       }
+      setLoading(false);
     });
 
     return () => unsub();
   }, []);
+
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
 
   if (!signed) {
     return <Navigate to="/" replace />;

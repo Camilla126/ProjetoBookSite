@@ -5,20 +5,18 @@ import Footer from "../Components/Footer";
 const Layout = () => {
   const location = useLocation();
 
-  const hiddenRoutes = ["/login", "/register"];
+  const hiddenRoutes = ["/", "/register"];
 
   const shouldHideHeaderFooter = hiddenRoutes.includes(location.pathname);
 
   return (
     <>
-      {}
       {!shouldHideHeaderFooter && <Header />}
 
       <main>
-        <Outlet /> {}
+        <Outlet />
       </main>
 
-      {}
       {!shouldHideHeaderFooter && <Footer />}
     </>
   );

@@ -10,7 +10,9 @@ import { PiUserLight } from "react-icons/pi";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext, AuthContextInterface } from "../../contexts/auth";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebaseConnection";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -26,10 +28,25 @@ export default function Register() {
     e.preventDefault();
 
     if (username !== "" && email !== "" && password !== "") {
-      await signUp(email, password, username);
-      navigate("/home");
+      try {
+        await signUp(email, password, username);
+        navigate("/home");
+      } catch (error) {
+        console.error("Erro no cadastro", error);
+      }
     }
   };
+
+  // useEffect(() => {
+  //   const unsub = onAuthStateChanged(auth, (user) => {
+  //     console.log("Userrr", user);
+  //     if (user) {
+  //       navigate("/home");
+  //     }
+  //   });
+
+  //   return () => unsub();
+  // }, []);
 
   return (
     <main className={styles.main}>

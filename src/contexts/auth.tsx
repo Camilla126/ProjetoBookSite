@@ -1,4 +1,4 @@
-import { useState, createContext, FC, ReactNode, useEffect } from "react";
+import { useState, createContext, FC, ReactNode } from "react";
 import { auth, db } from "../firebaseConnection";
 import {
   createUserWithEmailAndPassword,
@@ -30,21 +30,6 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserInterface | null>(null);
   const [loadingAuth, setLoadingAuth] = useState(false);
 
-  const saveUserToLocalStorage = (userData: UserInterface) => {
-    localStorage.setItem("user", JSON.stringify(userData));
-  };
-
-  const loadUserFromLocalStorage = () => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  };
-
-  useEffect(() => {
-    loadUserFromLocalStorage();
-  }, []);
-
   async function signIn(email: string, password: string) {
     try {
       setLoadingAuth(true);
@@ -60,15 +45,11 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
       if (docSnap.exists()) {
         const userData = docSnap.data() as UserInterface;
         setUser(userData);
-        saveUserToLocalStorage(userData);
 
         toast.success("Login realizado com sucesso!");
       } else {
         toast.error("Email ou senha incorretos. Tente novamente.");
       }
-    } catch (error) {
-      console.error(error);
-      toast.error("Ops! Algo deu errado.");
     } finally {
       setLoadingAuth(false);
     }
@@ -92,7 +73,6 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
       await setDoc(doc(db, "users", userResponse.user.uid), userData);
 
       setUser(userData);
-      saveUserToLocalStorage(userData);
 
       toast.success("Cadastro realizado com sucesso!");
     } finally {
