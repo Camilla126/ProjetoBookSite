@@ -46,10 +46,10 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
         const userData = docSnap.data() as UserInterface;
         setUser(userData);
 
-        toast.success("Login realizado com sucesso!");
-      } else {
-        toast.error("Email ou senha incorretos. Tente novamente.");
+        toast.success("Bem vindo!");
       }
+    } catch {
+      toast.error("Email ou senha incorretos. Tente novamente.");
     } finally {
       setLoadingAuth(false);
     }
@@ -74,7 +74,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
       setUser(userData);
 
-      toast.success("Cadastro realizado com sucesso!");
+      toast.success("Bem vindo ao sistema!");
     } finally {
       setLoadingAuth(false);
     }

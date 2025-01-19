@@ -13,6 +13,7 @@ import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 import { useState, useContext, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebaseConnection";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -29,8 +30,8 @@ export default function Login() {
         await signIn(email, password);
 
         navigate("/home");
-      } catch (error) {
-        console.error("Erro no console", error);
+      } catch {
+        toast.error("Ops, algo deu errado");
       }
     }
   };

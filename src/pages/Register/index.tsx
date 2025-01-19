@@ -13,6 +13,7 @@ import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 import { useState, useContext, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebaseConnection";
+import { toast } from "react-toastify";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -31,8 +32,8 @@ export default function Register() {
       try {
         await signUp(email, password, username);
         navigate("/home");
-      } catch (error) {
-        console.error("Erro no cadastro", error);
+      } catch {
+        toast.error(" Erro ao cadastrar");
       }
     }
   };
