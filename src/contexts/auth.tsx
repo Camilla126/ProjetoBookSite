@@ -1,4 +1,4 @@
-import { useState, createContext, FC, ReactNode } from "react";
+import { useState, useEffect, createContext, FC, ReactNode } from "react";
 import { auth, db } from "../firebaseConnection";
 import {
   createUserWithEmailAndPassword,
@@ -12,6 +12,7 @@ export interface UserInterface {
   uid: string;
   name: string;
   email: string;
+  password: string;
 }
 
 export interface AuthContextInterface {
@@ -20,6 +21,7 @@ export interface AuthContextInterface {
   loadingAuth: boolean;
   signUp: (email: string, password: string, name: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
+  signOut: () => void;
 }
 
 export const AuthContext = createContext<AuthContextInterface | undefined>(
@@ -29,6 +31,13 @@ export const AuthContext = createContext<AuthContextInterface | undefined>(
 const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserInterface | null>(null);
   const [loadingAuth, setLoadingAuth] = useState(false);
+
+  useEffect(() => {
+    const userData = localStorage.getItem("@AuthUser");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
 
   async function signIn(email: string, password: string) {
     try {
@@ -45,8 +54,9 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
       if (docSnap.exists()) {
         const userData = docSnap.data() as UserInterface;
         setUser(userData);
+        localStorage.setItem("@AuthUser", JSON.stringify(userData));
 
-        toast.success("Bem vindo!");
+        toast.success("Bem vindo ao BookWorms!");
       }
     } catch {
       toast.error("Email ou senha incorretos. Tente novamente.");
@@ -72,12 +82,18 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
       await setDoc(doc(db, "users", userResponse.user.uid), userData);
 
-      setUser(userData);
+      localStorage.setItem("@AuthUser", JSON.stringify(userData));
 
       toast.success("Bem vindo ao sistema!");
     } finally {
       setLoadingAuth(false);
     }
+  }
+
+  function signOut() {
+    setUser(null);
+    localStorage.removeItem("@AuthUser");
+    toast.info("Você saiu do sistema.");
   }
 
   return (
@@ -87,6 +103,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
         user,
         signIn,
         signUp,
+        signOut,
         loadingAuth,
       }}
     >

@@ -19,7 +19,9 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signIn, signed } = useContext(AuthContext) as AuthContextInterface;
+  const { signIn, signed, loadingAuth } = useContext(
+    AuthContext
+  ) as AuthContextInterface;
   const navigate = useNavigate();
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -80,7 +82,10 @@ export default function Login() {
             name="password"
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">
+          {" "}
+          {loadingAuth ? "Carregando..." : "Login"}
+        </button>
         <div className={styles.linkContainer}>
           <p>Não tem uma conta?</p>
           <Link to="/register" className={styles.linkRegister}>
