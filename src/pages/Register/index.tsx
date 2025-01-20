@@ -21,7 +21,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const { signUp, loadingAuth } = useContext(
+  const { signUp, loadingAuth, errors } = useContext(
     AuthContext
   ) as AuthContextInterface;
 
@@ -38,16 +38,16 @@ export default function Register() {
     }
   };
 
-  // useEffect(() => {
-  //   const unsub = onAuthStateChanged(auth, (user) => {
-  //     console.log("Userrr", user);
-  //     if (user) {
-  //       navigate("/home");
-  //     }
-  //   });
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      console.log("Userrr", user);
+      if (user) {
+        navigate("/home");
+      }
+    });
 
-  //   return () => unsub();
-  // }, []);
+    return () => unsub();
+  }, []);
 
   return (
     <main className={styles.main}>
@@ -70,7 +70,8 @@ export default function Register() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             name="username"
-          />
+          />{" "}
+          {errors.name && <span className={styles.erro}>{errors.name}</span>}
         </div>
         <div className={styles.form}>
           <label>Email</label>
@@ -81,7 +82,8 @@ export default function Register() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             name="email"
-          />
+          />{" "}
+          {errors.email && <span className={styles.erro}>{errors.email}</span>}
         </div>
         <div className={styles.form}>
           <label htmlFor="password">Senha</label>
@@ -92,7 +94,10 @@ export default function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             name="password"
-          />
+          />{" "}
+          {errors.password && (
+            <span className={styles.erro}>{errors.password}</span>
+          )}
         </div>
         <button type="submit">
           {loadingAuth ? "Carregando..." : "Cadastrar"}

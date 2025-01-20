@@ -19,7 +19,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signIn, signed, loadingAuth } = useContext(
+  const { signIn, loadingAuth, errors } = useContext(
     AuthContext
   ) as AuthContextInterface;
   const navigate = useNavigate();
@@ -38,16 +38,16 @@ export default function Login() {
     }
   };
 
-  // useEffect(() => {
-  //   const unsub = onAuthStateChanged(auth, (user) => {
-  //     console.log("Userrr", user);
-  //     if (user) {
-  //       navigate("/home");
-  //     }
-  //   });
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      console.log("Userrr", user);
+      if (user) {
+        navigate("/home");
+      }
+    });
 
-  //   return () => unsub();
-  // }, []);
+    return () => unsub();
+  }, []);
 
   return (
     <main className={styles.main}>
@@ -70,6 +70,7 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
             name="email"
           />
+          {errors.email && <span className={styles.erro}>{errors.email}</span>}
         </div>
         <div className={styles.form}>
           <label htmlFor="password">Senha</label>
@@ -81,11 +82,11 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
             name="password"
           />
+          {errors.password && (
+            <span className={styles.erro}> {errors.password}</span>
+          )}
         </div>
-        <button type="submit">
-          {" "}
-          {loadingAuth ? "Carregando..." : "Login"}
-        </button>
+        <button type="submit">{loadingAuth ? "Carregando..." : "Login"}</button>
         <div className={styles.linkContainer}>
           <p>Não tem uma conta?</p>
           <Link to="/register" className={styles.linkRegister}>
