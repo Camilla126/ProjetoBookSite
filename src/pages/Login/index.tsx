@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import IntersectImage from "../../../src/assets/IMG_logincadastro/Intersect.png";
 
 import { GiSpellBook } from "react-icons/gi";
-import { PiUserCircleThin } from "react-icons/pi";
+import { PiUserCircleFill } from "react-icons/pi";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 
@@ -55,7 +55,7 @@ export default function Login() {
           <GiSpellBook className={styles.iconLogo} /> BookWorms
         </h3>
         <h2>
-          <PiUserCircleThin className={styles.iconLogin} />
+          <PiUserCircleFill className={styles.iconLogin} />
           Faça Login
         </h2>
         <div className={styles.form}>
