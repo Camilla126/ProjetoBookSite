@@ -28,13 +28,12 @@ export default function Register() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (username !== "" && email !== "" && password !== "") {
-      try {
-        await signUp(email, password, username);
-        navigate("/home");
-      } catch {
-        toast.error(" Erro ao cadastrar");
-      }
+    try {
+      await signUp(email, password, username);
+
+      navigate("/home");
+    } catch {
+      toast.error(" Erro ao cadastrar");
     }
   };
 

@@ -27,14 +27,12 @@ export default function Login() {
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (email !== "" && password !== "") {
-      try {
-        await signIn(email, password);
+    try {
+      await signIn(email, password);
 
-        navigate("/home");
-      } catch {
-        toast.error("Ops, algo deu errado");
-      }
+      navigate("/home");
+    } catch {
+      toast.error("Ops, algo deu errado");
     }
   };
 

@@ -65,7 +65,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
 
     setErrors(newErrors);
-    console.log("Erros validados:", newErrors);
+
     return Object.keys(newErrors).length === 0;
   };
 
