@@ -18,7 +18,7 @@ export interface AuthContextInterface {
   signed: boolean;
   user: UserInterface | null;
   loadingAuth: boolean;
-  errors: { email?: string; password?: string; name?: string };
+
   signUp: (email: string, password: string, name: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => void;
@@ -31,11 +31,6 @@ export const AuthContext = createContext<AuthContextInterface | undefined>(
 const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserInterface | null>(null);
   const [loadingAuth, setLoadingAuth] = useState(false);
-  const [errors, setErrors] = useState<{
-    email?: string;
-    password?: string;
-    name?: string;
-  }>({});
 
   useEffect(() => {
     const userData = localStorage.getItem("@AuthUser");
@@ -44,33 +39,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, []);
 
-  const validate = (email: string, password: string, name?: string) => {
-    setErrors({});
-    const newErrors: { email?: string; password?: string; name?: string } = {};
-
-    if (name !== undefined && name.trim() === "") {
-      newErrors.name = "Campo obrigatório.";
-    }
-
-    if (!email) {
-      newErrors.email = "Campo obrigatório.";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Email inválido.";
-    }
-
-    if (!password) {
-      newErrors.password = "Campo obrigatório.";
-    } else if (password.length < 6) {
-      newErrors.password = "A senha deve ter pelo menos 6 caracteres.";
-    }
-
-    setErrors(newErrors);
-
-    return Object.keys(newErrors).length === 0;
-  };
-
   async function signIn(email: string, password: string) {
-    if (!validate(email, password)) return;
     setLoadingAuth(true);
 
     try {
@@ -97,7 +66,6 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }
 
   async function signUp(email: string, password: string, name: string) {
-    if (!validate(email, password, name)) return;
     setLoadingAuth(true);
 
     try {
@@ -142,7 +110,6 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
         signUp,
         signOut,
         loadingAuth,
-        errors,
       }}
     >
       {children}

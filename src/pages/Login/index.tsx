@@ -18,22 +18,26 @@ import { toast } from "react-toastify";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState<{
+    email?: string;
+    password?: string;
+  }>({});
 
-  const { signIn, loadingAuth, errors } = useContext(
+  const { signIn, loadingAuth } = useContext(
     AuthContext
   ) as AuthContextInterface;
   const navigate = useNavigate();
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (validate())
+      try {
+        await signIn(email, password);
 
-    try {
-      await signIn(email, password);
-
-      navigate("/home");
-    } catch {
-      toast.error("Ops, algo deu errado");
-    }
+        navigate("/home");
+      } catch {
+        toast.error("Ops, algo deu errado");
+      }
   };
 
   useEffect(() => {
@@ -45,7 +49,28 @@ export default function Login() {
     });
 
     return () => unsub();
-  }, []);
+  }, [navigate]);
+
+  const validate = () => {
+    setErrors({});
+    const newErrors: { email?: string; password?: string } = {};
+
+    if (!email) {
+      newErrors.email = "Campo obrigatório.";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Email inválido.";
+    }
+
+    if (!password) {
+      newErrors.password = "Campo obrigatório.";
+    } else if (password.length < 6) {
+      newErrors.password = "A senha deve ter pelo menos 6 caracteres.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
 
   return (
     <main className={styles.main}>

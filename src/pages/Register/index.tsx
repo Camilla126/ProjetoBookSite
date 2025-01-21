@@ -21,7 +21,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const { signUp, loadingAuth, errors } = useContext(
+  const { signUp, loadingAuth } = useContext(
     AuthContext
   ) as AuthContextInterface;
 
@@ -47,6 +47,31 @@ export default function Register() {
 
     return () => unsub();
   }, []);
+
+  const validate = (email: string, password: string, name?: string) => {
+    setErrors({});
+    const newErrors: { email?: string; password?: string; name?: string } = {};
+
+    if (name !== undefined && name.trim() === "") {
+      newErrors.name = "Campo obrigatório.";
+    }
+
+    if (!email) {
+      newErrors.email = "Campo obrigatório.";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Email inválido.";
+    }
+
+    if (!password) {
+      newErrors.password = "Campo obrigatório.";
+    } else if (password.length < 6) {
+      newErrors.password = "A senha deve ter pelo menos 6 caracteres.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
 
   return (
     <main className={styles.main}>
