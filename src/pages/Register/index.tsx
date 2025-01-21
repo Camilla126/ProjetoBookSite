@@ -20,6 +20,11 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [errors, setErrors] = useState<{
+    email?: string;
+    password?: string;
+    name?: string;
+  }>({});
 
   const { signUp, loadingAuth } = useContext(
     AuthContext
@@ -27,7 +32,7 @@ export default function Register() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    if (!validate()) return;
     try {
       await signUp(email, password, username);
 
@@ -46,13 +51,13 @@ export default function Register() {
     });
 
     return () => unsub();
-  }, []);
+  }, [navigate]);
 
-  const validate = (email: string, password: string, name?: string) => {
+  const validate = () => {
     setErrors({});
     const newErrors: { email?: string; password?: string; name?: string } = {};
 
-    if (name !== undefined && name.trim() === "") {
+    if (username !== undefined && username.trim() === "") {
       newErrors.name = "Campo obrigatório.";
     }
 

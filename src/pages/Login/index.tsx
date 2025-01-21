@@ -30,14 +30,15 @@ export default function Login() {
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (validate())
-      try {
-        await signIn(email, password);
+    console.log(validate());
+    if (!validate()) return;
+    try {
+      await signIn(email, password);
 
-        navigate("/home");
-      } catch {
-        toast.error("Ops, algo deu errado");
-      }
+      navigate("/home");
+    } catch {
+      toast.error("Ops, algo deu errado");
+    }
   };
 
   useEffect(() => {
