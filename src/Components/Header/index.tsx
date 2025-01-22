@@ -1,18 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../Header/styles.module.scss";
+import { IoIosLogOut } from "react-icons/io";
+import { FaUserCircle } from "react-icons/fa";
+import { CgFeed } from "react-icons/cg";
+import { IoHomeOutline } from "react-icons/io5";
+import { GoBookmark } from "react-icons/go";
+import { useContext } from "react";
+import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 
-const Header = () => {
+export default function Header() {
+  const { user, signOut } = useContext(AuthContext) as AuthContextInterface;
+  const navigate = useNavigate();
   return (
-    <main className={styles.main}>
+    <header className={styles.main}>
       <div>
-        <h1>HEADER</h1>
-
-        <Link to="/home">Home</Link>
-        <Link to="/feed">Feed</Link>
-        <Link to="/saved">Saved</Link>
+        <FaUserCircle /> {user?.name || "user"}
+        <div className={styles.navegation}>
+          <IoHomeOutline />
+          <Link to="/home">Home</Link>
+          <CgFeed />
+          <Link to="/feed">Feed</Link>
+          <GoBookmark />
+          <Link to="/saved">Saved</Link>
+        </div>
+        <IoIosLogOut />{" "}
+        <button
+          onClick={() => {
+            signOut();
+            navigate("/");
+          }}
+        >
+          Sair
+        </button>
       </div>
-    </main>
+    </header>
   );
-};
-
-export default Header;
+}

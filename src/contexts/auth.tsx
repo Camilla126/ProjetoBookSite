@@ -17,11 +17,10 @@ export interface UserInterface {
 export interface AuthContextInterface {
   signed: boolean;
   user: UserInterface | null;
+  signOut: () => void;
   loadingAuth: boolean;
-
   signUp: (email: string, password: string, name: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
-  signOut: () => void;
 }
 
 export const AuthContext = createContext<AuthContextInterface | undefined>(
@@ -34,8 +33,14 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   useEffect(() => {
     const userData = localStorage.getItem("@AuthUser");
-    if (userData) {
-      setUser(JSON.parse(userData));
+
+    try {
+      if (userData) {
+        setUser(JSON.parse(userData));
+      }
+    } catch {
+      console.error("erro ao passar dados do usuario");
+      localStorage.removeItem("@AuthUser");
     }
   }, []);
 
@@ -95,11 +100,11 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }
 
-  function signOut() {
+  const signOut = () => {
     setUser(null);
     localStorage.removeItem("@AuthUser");
     toast.info("Você saiu do sistema.");
-  }
+  };
 
   return (
     <AuthContext.Provider

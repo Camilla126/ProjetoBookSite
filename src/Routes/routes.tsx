@@ -10,34 +10,58 @@ import MyStory from "../Pages/MyStory";
 import Saved from "../Pages/Saved";
 import Feed from "../Pages/Feed";
 
-import { BrowserRouter } from "react-router-dom";
-
 import Private from "./private";
 
 const MainRoutes = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/feed" element={<Feed />} />
-          <Route path="/saved" element={<Saved />} />
-          <Route path="/mystory" element={<MyStory />} />
-          <Route path="/mybooks" element={<MyBooks />} />
-          <Route path="/bestreader" element={<BestReader />} />
-          <Route
-            path="/home"
-            element={
-              <Private>
-                <Home />
-              </Private>
-            }
-          />
-        </Route>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route
+          path="/feed"
+          element={
+            <Private>
+              <Feed />
+            </Private>
+          }
+        />
+        <Route
+          path="/saved"
+          element={
+            <Private>
+              <Saved />
+            </Private>
+          }
+        />
+        <Route
+          path="/mystory"
+          element={
+            <Private>
+              <MyStory />
+            </Private>
+          }
+        />
+        <Route
+          path="/mybooks"
+          element={
+            <Private>
+              <MyBooks />
+            </Private>
+          }
+        />
+        <Route path="/bestreader" element={<BestReader />} />
+        <Route
+          path="/home"
+          element={
+            <Private>
+              <Home />
+            </Private>
+          }
+        />
+      </Route>
 
-        <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
+      <Route path="/register" element={<Register />} />
+      <Route path="/" element={<Login />} />
+    </Routes>
   );
 };
 

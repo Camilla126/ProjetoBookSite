@@ -43,7 +43,6 @@ export default function Login() {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      console.log("Userrr", user);
       if (user) {
         navigate("/home");
       }

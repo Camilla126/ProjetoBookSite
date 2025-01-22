@@ -9,7 +9,6 @@ const Private: FC<{ children: ReactNode }> = ({ children }) => {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      console.log("Userrr", user);
       if (user) {
         setSigned(true);
       } else {
