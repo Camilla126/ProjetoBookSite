@@ -8,12 +8,17 @@ import { GoBookmark } from "react-icons/go";
 import { useContext } from "react";
 import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 export default function Header() {
-  const { logOut } = useContext(AuthContext) as AuthContextInterface;
+  const { logOut, user } = useContext(AuthContext) as AuthContextInterface;
   const navigate = useNavigate();
   return (
     <header className={styles.main}>
       <div>
-        <FaUserCircle /> user
+        <FaUserCircle />
+        {user ? (
+          <span className={styles.userName}>{user.name}</span>
+        ) : (
+          <span className={styles.userName}></span>
+        )}
         <div className={styles.navegation}>
           <IoHomeOutline /> <Link to="/home">Home</Link> <CgFeed />{" "}
           <Link to="/feed">Feed</Link> <GoBookmark />
