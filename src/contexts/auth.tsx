@@ -91,6 +91,8 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
       }
 
       await setDoc(doc(db, "users", userResponse.user.uid), userData);
+
+      setUser(userData);
       localStorage.setItem("@AuthUser", JSON.stringify(userData));
 
       toast.success("Bem vindo ao sistema!");
