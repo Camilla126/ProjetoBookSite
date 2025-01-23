@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
 import IntersectImage from "../../../src/assets/IMG_logincadastro/Intersect.png";
 
@@ -7,7 +7,6 @@ import { PiUserCircleFill } from "react-icons/pi";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 
-import { useNavigate } from "react-router-dom";
 import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 
 import { useState, useContext, useEffect } from "react";
@@ -30,12 +29,9 @@ export default function Login() {
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(validate());
     if (!validate()) return;
     try {
       await signIn(email, password);
-
-      navigate("/home");
     } catch {
       toast.error("Ops, algo deu errado");
     }

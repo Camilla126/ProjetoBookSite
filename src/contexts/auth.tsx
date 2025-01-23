@@ -3,6 +3,7 @@ import { auth, db } from "../firebaseConnection";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -17,7 +18,7 @@ export interface UserInterface {
 export interface AuthContextInterface {
   signed: boolean;
   user: UserInterface | null;
-  signOut: () => void;
+  logOut: () => void;
   loadingAuth: boolean;
   signUp: (email: string, password: string, name: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
@@ -100,10 +101,15 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }
 
-  const signOut = () => {
-    setUser(null);
-    localStorage.removeItem("@AuthUser");
-    toast.info("Você saiu do sistema.");
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+      localStorage.removeItem("@AuthUser");
+      toast.info("Você saiu do sistema.");
+    } catch {
+      toast.error("Erro ao sair do sistema. Tente novamente.");
+    }
   };
 
   return (
@@ -113,7 +119,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
         user,
         signIn,
         signUp,
-        signOut,
+        logOut,
         loadingAuth,
       }}
     >

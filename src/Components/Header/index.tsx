@@ -7,31 +7,28 @@ import { IoHomeOutline } from "react-icons/io5";
 import { GoBookmark } from "react-icons/go";
 import { useContext } from "react";
 import { AuthContext, AuthContextInterface } from "../../contexts/auth";
-
 export default function Header() {
-  const { user, signOut } = useContext(AuthContext) as AuthContextInterface;
+  const { logOut } = useContext(AuthContext) as AuthContextInterface;
   const navigate = useNavigate();
   return (
     <header className={styles.main}>
       <div>
-        <FaUserCircle /> {user?.name || "user"}
+        <FaUserCircle /> user
         <div className={styles.navegation}>
-          <IoHomeOutline />
-          <Link to="/home">Home</Link>
-          <CgFeed />
-          <Link to="/feed">Feed</Link>
-          <GoBookmark />
+          <IoHomeOutline /> <Link to="/home">Home</Link> <CgFeed />{" "}
+          <Link to="/feed">Feed</Link> <GoBookmark />
           <Link to="/saved">Saved</Link>
         </div>
-        <IoIosLogOut />{" "}
+        <IoIosLogOut />
         <button
           onClick={() => {
-            signOut();
+            logOut();
             navigate("/");
           }}
         >
-          Sair
+          Sai
         </button>
+        r
       </div>
     </header>
   );

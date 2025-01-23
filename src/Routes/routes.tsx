@@ -48,7 +48,14 @@ const MainRoutes = () => {
             </Private>
           }
         />
-        <Route path="/bestreader" element={<BestReader />} />
+        <Route
+          path="/bestreader"
+          element={
+            <Private>
+              <BestReader />
+            </Private>
+          }
+        />
         <Route
           path="/home"
           element={
@@ -60,6 +67,7 @@ const MainRoutes = () => {
       </Route>
 
       <Route path="/register" element={<Register />} />
+
       <Route path="/" element={<Login />} />
     </Routes>
   );

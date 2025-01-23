@@ -35,8 +35,6 @@ export default function Register() {
     if (!validate()) return;
     try {
       await signUp(email, password, username);
-
-      navigate("/home");
     } catch {
       toast.error(" Erro ao cadastrar");
     }
