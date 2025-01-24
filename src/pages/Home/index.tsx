@@ -1,6 +1,6 @@
 import { GiSpellBook } from "react-icons/gi";
-import { LuNotebookPen } from "react-icons/lu";
-import { RiBookShelfLine } from "react-icons/ri";
+import { PiBookOpenTextThin } from "react-icons/pi";
+import { PiBooksThin } from "react-icons/pi";
 import { PiRankingLight } from "react-icons/pi";
 import IntersectImage from "../../assets/IMG_home/Group 1.png";
 
@@ -15,15 +15,15 @@ export default function Home() {
 
       <div className={styles.buttonContainer}>
         <button>
-          <p>Criar minha história</p>
-          <LuNotebookPen className={styles.icons} />
+          Criar minha história
+          <PiBookOpenTextThin className={styles.icons} />
         </button>
         <button>
-          <p>Meus livros</p>
-          <RiBookShelfLine className={styles.icons} />
+          Meus livros
+          <PiBooksThin className={styles.icons} />
         </button>
         <button>
-          <p>Melhores leitores</p>
+          Melhores leitores
           <PiRankingLight className={styles.icons} />
         </button>
       </div>
