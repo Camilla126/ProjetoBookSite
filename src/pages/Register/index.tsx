@@ -55,10 +55,11 @@ export default function Register() {
     setErrors({});
     const newErrors: { email?: string; password?: string; name?: string } = {};
 
-    if (username !== undefined && username.trim() === "") {
+    if (username.trim() === "") {
       newErrors.name = "Campo obrigatório.";
+    } else if (username.length > 25) {
+      newErrors.name = "O nome de usuário deve ter no máximo 25 caracteres.";
     }
-
     if (!email) {
       newErrors.email = "Campo obrigatório.";
     } else if (!/\S+@\S+\.\S+/.test(email)) {

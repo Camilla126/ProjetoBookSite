@@ -1,55 +1,79 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import styles from "../Header/styles.module.scss";
 import { IoIosLogOut } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
 import { CgFeed } from "react-icons/cg";
-import { IoHomeOutline } from "react-icons/io5";
-import { GoBookmark } from "react-icons/go";
+import { IoHomeOutline, IoBookmark } from "react-icons/io5";
 import { useContext } from "react";
 import { AuthContext, AuthContextInterface } from "../../contexts/auth";
 
 export default function Header() {
   const { logOut, user } = useContext(AuthContext) as AuthContextInterface;
-  const navigate = useNavigate();
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState("/home");
+
+  useEffect(() => {
+    setActiveTab(location.pathname);
+  }, [location]);
 
   return (
     <header className={styles.main}>
-      {/* Seção do usuário */}
       <div className={styles.userSection}>
         <FaUserCircle className={styles.iconUser} />
         <span className={styles.userName}>{user?.name || "Usuário"}</span>
       </div>
 
-      {/* Navegação */}
       <nav className={styles.navegation}>
-        <Link to="/home" className={styles.navItem}>
-          <IoHomeOutline className={styles.icon} />
-          Home
-        </Link>
-        <Link to="/feed" className={styles.navItem}>
-          <CgFeed className={styles.icon} />
-          Feed
-        </Link>
-        <Link to="/saved" className={styles.navItem}>
-          <GoBookmark className={styles.icon} />
-          Saved
-        </Link>
+        <div className={styles.navItems}>
+          <Link
+            to="/home"
+            className={`${styles.navItem} ${
+              activeTab === "/home" ? styles.active : ""
+            }`}
+          >
+            <IoHomeOutline className={styles.icon} />
+            Home
+          </Link>
+          <Link
+            to="/feed"
+            className={`${styles.navItem} ${
+              activeTab === "/feed" ? styles.active : ""
+            }`}
+          >
+            <CgFeed className={styles.icon} />
+            Feed
+          </Link>
+          <Link
+            to="/saved"
+            className={`${styles.navItem} ${
+              activeTab === "/saved" ? styles.active : ""
+            }`}
+          >
+            <IoBookmark className={styles.icon} />
+            Saved
+          </Link>
+          <div
+            className={styles.indicator}
+            style={{
+              transform: `translateX(${
+                activeTab === "/home" ? 0 : activeTab === "/feed" ? 200 : 380
+              }%)`,
+            }}
+          />
+        </div>
       </nav>
 
-      {/* Botão de sair */}
-      <div className={styles.logoutSection}>
-        <Link
-          to="/"
-          className={styles.logoutLink}
-          onClick={() => {
-            logOut();
-            navigate("/");
-          }}
-        >
-          <IoIosLogOut className={styles.iconSair} />
-          Sair
-        </Link>
-      </div>
+      <Link
+        to="/"
+        className={styles.logoutLink}
+        onClick={() => {
+          logOut();
+        }}
+      >
+        <IoIosLogOut className={styles.iconSair} />
+        Sair
+      </Link>
     </header>
   );
 }
