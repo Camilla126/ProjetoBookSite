@@ -40,11 +40,17 @@
       border: none;
       outline: none;
       font-size: 30px;
+      color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease;
 
       &:hover {
-        background-color: #ff81ae;
+        background-color: #f76e96;
         color: white;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        .icons {
+          color: white;
+        }
       }
 
       .icons {
