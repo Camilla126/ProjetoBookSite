@@ -1,0 +1,45 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+
+  h1 {
+    position: relative;
+    top: 20px;
+    font-size: 55px;
+    font-family: Diphylleia;
+    text-align: center;
+
+    .iconTitle {
+      font-size: 70px;
+      color: #f76e96;
+    }
+  }
+
+  .buttonContainer {
+    display: flex;
+
+    align-items: center;
+    gap: 20px;
+    top: 150px;
+    position: relative;
+
+    p {
+    }
+
+    .icons {
+      color: #ff81ae;
+    }
+  }
+
+  img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 650px;
+    height: 850px;
+    top: 30px;
+  }
+}
