@@ -4,7 +4,7 @@ import { PiBooksThin } from "react-icons/pi";
 import { PiRankingLight } from "react-icons/pi";
 import IntersectImage from "../../assets/IMG_home/Group 1.png";
 
-import { Link } from "react-router-dom";
+import Article from "../Article/article";
 
 import styles from "./styles.module.scss";
 
@@ -16,13 +16,10 @@ const Home = () => {
       </h1>
 
       <div className={styles.buttonContainer}>
-        <Link to="/mystory">
-          {" "}
-          <button>
-            Criar minha história
-            <PiBookOpenTextThin className={styles.icons} />
-          </button>
-        </Link>
+        <button>
+          Criar minha história
+          <PiBookOpenTextThin className={styles.icons} />
+        </button>
 
         <button>
           Meus livros
@@ -35,6 +32,8 @@ const Home = () => {
       </div>
 
       <img src={IntersectImage} alt="Book" />
+
+      <Article />
     </main>
   );
 };
