@@ -6,6 +6,8 @@ import IntersectImage from "../../assets/IMG_home/Group 1.png";
 
 import Article from "../Article/article";
 
+import { Link } from "react-router-dom";
+
 import styles from "./styles.module.scss";
 
 const Home = () => {
@@ -16,10 +18,12 @@ const Home = () => {
       </h1>
 
       <div className={styles.buttonContainer}>
-        <button>
-          Criar minha história
-          <PiBookOpenTextThin className={styles.icons} />
-        </button>
+        <Link to="/mystory">
+          <button>
+            Criar minha história
+            <PiBookOpenTextThin className={styles.icons} />
+          </button>{" "}
+        </Link>
 
         <button>
           Meus livros

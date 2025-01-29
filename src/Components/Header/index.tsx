@@ -12,8 +12,11 @@ export default function Header() {
   const { logOut, user } = useContext(AuthContext) as AuthContextInterface;
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("/home");
+  console.log(activeTab);
+  const routeToRender = ["/saved", "/home", "/feed"];
 
   useEffect(() => {
+    console.log(location.pathname);
     setActiveTab(location.pathname);
   }, [location]);
 
@@ -57,8 +60,15 @@ export default function Header() {
             className={styles.indicator}
             style={{
               transform: `translateX(${
-                activeTab === "/home" ? 0 : activeTab === "/feed" ? 200 : 380
+                activeTab === "/home"
+                  ? 0
+                  : activeTab === "/feed"
+                  ? 200
+                  : activeTab === "/saved"
+                  ? 380
+                  : 0
               }%)`,
+              display: routeToRender.includes(activeTab) ? "flex" : "none",
             }}
           />
         </div>
