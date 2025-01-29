@@ -1,6 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import Private from "./private";
+import AppContainer from "../Components/AppContainer";
 
 const Layout = () => {
   const location = useLocation();
@@ -11,13 +13,17 @@ const Layout = () => {
 
   return (
     <>
-      {!shouldHideHeaderFooter && <Header />}
+      <Private>
+        {!shouldHideHeaderFooter && <Header />}
 
-      <main>
-        <Outlet />
-      </main>
+        <main>
+          <AppContainer>
+            <Outlet />
+          </AppContainer>
+        </main>
 
-      {!shouldHideHeaderFooter && <Footer />}
+        {!shouldHideHeaderFooter && <Footer />}
+      </Private>
     </>
   );
 };
