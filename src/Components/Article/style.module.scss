@@ -8,14 +8,21 @@
   }
   .articleContainer {
     h2 {
+      display: flex;
+      align-items: center;
+
+      width: 500px;
+      font-size: 20px;
+      margin-bottom: 20px;
+      font-weight: 600;
     }
 
     p {
     }
+    img {
+    }
   }
-  img {
-    display: flex;
-  }
+
   ul {
     list-style-type: disc;
     padding-left: 20px;
@@ -30,6 +37,7 @@
     font-weight: 500;
   }
   .icons {
-    color: #ff81ae;
+    color: #f6346d;
+    font-size: 60px;
   }
 }
