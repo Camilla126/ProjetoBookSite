@@ -1,5 +1,8 @@
-.Main {
+.main {
   margin-top: 300px;
+
+  .articleContainer {
+  }
 
   ul {
     list-style-type: disc;
@@ -9,5 +12,9 @@
 
   li {
     margin-bottom: 5px;
+  }
+
+  strong {
+    font-weight: 500;
   }
 }

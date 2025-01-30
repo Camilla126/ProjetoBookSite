@@ -2,11 +2,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./style.module.scss";
 
+import { GiWhiteBook } from "react-icons/gi";
+import { BiSolidBookHeart } from "react-icons/bi";
+import { GiBurningBook } from "react-icons/gi";
+
 const Article: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className={styles.Main}>
+    <div className={styles.main}>
       <button onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen}>
         {isOpen ? "Esconder Conteúdo ⬆" : "Mostrar Artigp ⬇"}
       </button>
@@ -17,8 +21,11 @@ const Article: React.FC = () => {
         transition={{ duration: 0.5, ease: "easeInOut" }}
         style={{ overflow: "hidden" }}
       >
-        <div>
-          <h2>Como Desenvolver o Hábito da Leitura e Transformar Sua Vida.</h2>
+        <div className={styles.articleContainer}>
+          <h2>
+            <GiWhiteBook />
+            Como Desenvolver o Hábito da Leitura e Transformar Sua Vida.
+          </h2>
           <p>
             A leitura é muito mais do que um passatempo; é uma ferramenta
             poderosa para expandir conhecimentos, desenvolver habilidades
@@ -54,40 +61,49 @@ const Article: React.FC = () => {
             </li>
           </ul>
 
-          <h2>Como Manter o Hábito de Leitura?</h2>
+          <h2>
+            {" "}
+            <BiSolidBookHeart />
+            Como Manter o Hábito de Leitura?
+          </h2>
           <p>
-            1.Comece Pequeno
+            <strong>1.Comece Pequeno</strong>
             <br /> Não tente devorar um clássico da literatura logo de cara.
             Escolha livros curtos ou que abordem temas de seu interesse.
             Histórias envolventes ajudam a criar uma conexão emocional com a
-            leitura. <br /> 2.Estabeleça uma Rotina
+            leitura. <br />
+            <strong>2.Estabeleça uma Rotina</strong>
             <br /> Dedique um horário específico do dia para ler. Pode ser pela
             manhã, antes de dormir ou durante o trajeto no transporte público.
-            Transforme a leitura em um ritual. <br /> 3. Tenha Metas Realistas
+            Transforme a leitura em um ritual. <br />
+            <strong>3.Tenha Metas Realistas</strong>
             <br /> Defina objetivos alcançáveis, como ler 10 páginas por dia ou
-            um livro por mês. Conforme avança, ajuste suas metas. <br /> 4. Crie
-            um Ambiente Convidativo
+            um livro por mês. Conforme avança, ajuste suas metas. <br />
+            <strong>4.Crie um Ambiente Convidativo</strong>
             <br /> Escolha um local tranquilo, bem iluminado e sem distrações
-            para ler. Um espaço acolhedor pode fazer toda a diferença. <br /> 5.
-            Tenha Sempre um Livro por Perto
+            para ler. Um espaço acolhedor pode fazer toda a diferença. <br />
+            <strong>5.Tenha Sempre um Livro por Perto</strong>
             <br /> Carregue um livro ou e-reader com você. Assim, é possível
             aproveitar momentos de espera para ler algumas páginas.
           </p>
 
-          <h2>Como Ler Mais:</h2>
+          <h2>
+            <GiBurningBook />
+            Como Ler Mais:
+          </h2>
           <ul>
             <li>
-              Diversifique os Gênros: Experimente diferentes tipos de
-              literatura, como ficção, biografias, poesia e livros técnicos.
-              Isso evita a monotonia.
+              <strong>Diversifique os Gênros: </strong>
+              Experimente diferentes tipos de literatura, como ficção,
+              biografias, poesia e livros técnicos. Isso evita a monotonia.
             </li>
             <li>
-              Participe de Grupos de Leitura: Compartilhar experiências e
-              debater sobre livros motiva a continuar lendo.
+              <strong>Participe de Grupos de Leitura:</strong> Compartilhar
+              experiências e debater sobre livros motiva a continuar lendo.
             </li>
             <li>
-              Aproveite Tecnologias: Aplicativos e audiolivros são ótimos
-              aliados para quem tem uma rotina corrida.
+              <strong>Aproveite Tecnologias:</strong> Aplicativos e audiolivros
+              são ótimos aliados para quem tem uma rotina corrida.
             </li>
           </ul>
 
@@ -99,14 +115,18 @@ const Article: React.FC = () => {
 
           <ul>
             <li>
-              Ficção: O Pequeno Príncipe (Antoine de Saint-Exupéry) ou 1984
-              (George Orwell).
+              <strong>Ficção:</strong> <em>O Pequeno Príncipe</em> (Antoine de
+              Saint-Exupéry) <em>ou 1984</em> (George Orwell).
             </li>
             <li>
-              Desenvolvimento Pessoal: Os 7 Hábitos das Pessoas Altamente
-              Eficazes (Stephen Covey).
+              <strong>Desenvolvimento Pessoal:</strong>
+              <em>Os 7 Hábitos das Pessoas Altamente Eficazes</em> (Stephen
+              Covey).
             </li>
-            <li>Biografias: A História de Minha Vida (Helen Keller).</li>
+            <li>
+              <strong>Biografias:</strong> <em>A História de Minha Vida </em>
+              (Helen Keller).
+            </li>
           </ul>
 
           <h2>Por Que Criar Suas Próprias Histórias?</h2>
@@ -119,17 +139,18 @@ const Article: React.FC = () => {
 
           <ul>
             <li>
-              Desenvolve a Comunicação: Ao colocar suas ideias no papel, você
-              aprimora sua capacidade de se expressar de forma clara e coerente.
+              <strong> Desenvolve a Comunicação:</strong> Ao colocar suas ideias
+              no papel, você aprimora sua capacidade de se expressar de forma
+              clara e coerente.
             </li>
             <li>
-              Fortalece a Imaginacão: Criar personagens, cenários e tramas
-              estimula o cérebro a pensar fora da caixa.
+              <strong>Fortalece a Imaginacão:</strong> Criar personagens,
+              cenários e tramas estimula o cérebro a pensar fora da caixa.
             </li>
             <li>
-              Promove o Autoconhecimento: Escrever sobre suas experiências ou
-              criar mundos fictícios ajuda a entender melhor quem você é e como
-              enxerga o mundo.
+              <strong> Promove o Autoconhecimento:</strong> Escrever sobre suas
+              experiências ou criar mundos fictícios ajuda a entender melhor
+              quem você é e como enxerga o mundo.
             </li>
           </ul>
         </div>
