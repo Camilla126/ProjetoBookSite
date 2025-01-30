@@ -4,7 +4,7 @@ import { PiBooksThin } from "react-icons/pi";
 import { PiRankingLight } from "react-icons/pi";
 import IntersectImage from "../../assets/IMG_home/Group 1.png";
 
-import Article from "../Article/article";
+import Article from "../../Components/Article/article";
 
 import { Link } from "react-router-dom";
 
