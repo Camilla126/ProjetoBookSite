@@ -29,10 +29,13 @@ const Home = () => {
           Meus livros
           <PiBooksThin className={styles.icons} />
         </button>
-        <button>
-          Melhores leitores
-          <PiRankingLight className={styles.icons} />
-        </button>
+
+        <div className={styles.button3}>
+          <button>
+            Melhores leitores
+            <PiRankingLight className={styles.icons} />
+          </button>
+        </div>
       </div>
 
       <img src={IntersectImage} alt="Book" />

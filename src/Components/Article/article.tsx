@@ -94,7 +94,7 @@ const Article: React.FC = () => {
             <GiBurningBook className={styles.icons} />
             Como Ler Mais:
           </h2>
-          <img src={IntersectImage2} alt="Book" />
+
           <ul>
             <li>
               <strong>Diversifique os Gênros: </strong>
@@ -110,7 +110,7 @@ const Article: React.FC = () => {
               são ótimos aliados para quem tem uma rotina corrida.
             </li>
           </ul>
-
+          <img src={IntersectImage2} alt="Book" />
           <h2>Por Onde Começar?</h2>
           <p>
             Se você está perdido na escolha do primeiro livro, aqui estão

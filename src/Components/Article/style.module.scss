@@ -1,7 +1,10 @@
 .main {
-  margin-top: 300px;
+  margin-top: -200px;
+  width: 1400px;
 
   button {
+    height: 30px;
+    margin-left: 700px;
   }
   .articleContainer {
     h2 {
@@ -11,7 +14,7 @@
     }
   }
   img {
-    display: block;
+    display: flex;
   }
   ul {
     list-style-type: disc;
@@ -27,5 +30,6 @@
     font-weight: 500;
   }
   .icons {
+    color: #ff81ae;
   }
 }
