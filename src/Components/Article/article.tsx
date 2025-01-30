@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./style.module.scss";
+import IntersectImage1 from "../../assets/IMG_home/Group 2.png";
+import IntersectImage2 from "../../assets/IMG_home/Group 3.png";
+import IntersectImage3 from "../../assets/IMG_home/Group 4.png";
 
 import { GiWhiteBook } from "react-icons/gi";
 import { BiSolidBookHeart } from "react-icons/bi";
@@ -23,7 +26,7 @@ const Article: React.FC = () => {
       >
         <div className={styles.articleContainer}>
           <h2>
-            <GiWhiteBook />
+            <GiWhiteBook className={styles.icons} />
             Como Desenvolver o Hábito da Leitura e Transformar Sua Vida.
           </h2>
           <p>
@@ -60,10 +63,10 @@ const Article: React.FC = () => {
               ajudando-nos a entender e respeitar diferentes perspectivas.
             </li>
           </ul>
+          <img src={IntersectImage1} alt="Book" />
 
           <h2>
-            {" "}
-            <BiSolidBookHeart />
+            <BiSolidBookHeart className={styles.icons} />
             Como Manter o Hábito de Leitura?
           </h2>
           <p>
@@ -88,9 +91,10 @@ const Article: React.FC = () => {
           </p>
 
           <h2>
-            <GiBurningBook />
+            <GiBurningBook className={styles.icons} />
             Como Ler Mais:
           </h2>
+          <img src={IntersectImage2} alt="Book" />
           <ul>
             <li>
               <strong>Diversifique os Gênros: </strong>
@@ -153,6 +157,7 @@ const Article: React.FC = () => {
               quem você é e como enxerga o mundo.
             </li>
           </ul>
+          <img src={IntersectImage3} alt="Book" />
         </div>
       </motion.div>
     </div>

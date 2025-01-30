@@ -1,9 +1,18 @@
 .main {
   margin-top: 300px;
 
-  .articleContainer {
+  button {
   }
+  .articleContainer {
+    h2 {
+    }
 
+    p {
+    }
+  }
+  img {
+    display: block;
+  }
   ul {
     list-style-type: disc;
     padding-left: 20px;
@@ -16,5 +25,7 @@
 
   strong {
     font-weight: 500;
+  }
+  .icons {
   }
 }
