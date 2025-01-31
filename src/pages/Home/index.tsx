@@ -22,20 +22,22 @@ const Home = () => {
           <button>
             Criar minha história
             <PiBookOpenTextThin className={styles.icons} />
-          </button>{" "}
+          </button>
         </Link>
 
-        <button>
-          Meus livros
-          <PiBooksThin className={styles.icons} />
-        </button>
-
-        <div className={styles.button3}>
+        <Link to="/mybooks">
           <button>
+            Meus livros
+            <PiBooksThin className={styles.icons} />
+          </button>
+        </Link>
+
+        <Link to="/bestreader">
+          <button className={styles.button3}>
             Melhores leitores
             <PiRankingLight className={styles.icons} />
           </button>
-        </div>
+        </Link>
       </div>
 
       <img src={IntersectImage} alt="Book" />

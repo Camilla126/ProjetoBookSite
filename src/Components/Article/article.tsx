@@ -4,163 +4,164 @@ import styles from "./style.module.scss";
 import IntersectImage1 from "../../assets/IMG_home/Group 2.png";
 import IntersectImage2 from "../../assets/IMG_home/Group 3.png";
 import IntersectImage3 from "../../assets/IMG_home/Group 4.png";
-
-import { GiWhiteBook } from "react-icons/gi";
+import { GiWhiteBook, GiBurningBook } from "react-icons/gi";
 import { BiSolidBookHeart } from "react-icons/bi";
-import { GiBurningBook } from "react-icons/gi";
 
 const Article: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className={styles.main}>
+    <article className={styles.main}>
       <button onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen}>
-        {isOpen ? "Esconder Conteúdo ⬆" : "Mostrar Artigp ⬇"}
+        {isOpen ? "Esconder Conteúdo ⬆" : "Mostrar Artigo ⬇"}
       </button>
 
-      <motion.div
+      <motion.section
         initial={{ height: 0, opacity: 0 }}
         animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
         style={{ overflow: "hidden" }}
       >
         <div className={styles.articleContainer}>
-          <h2>
-            <GiWhiteBook className={styles.icons} />
-            Como Desenvolver o Hábito da Leitura e Transformar Sua Vida.
-          </h2>
-          <p>
-            A leitura é muito mais do que um passatempo; é uma ferramenta
-            poderosa para expandir conhecimentos, desenvolver habilidades
-            cognitivas e melhorar a qualidade de vida. Apesar de seus
-            benefícios, muitas pessoas enfrentam desafios para criar e manter o
-            hábito de leitura.
-          </p>
-          <p>
-            <br />
-            Neste artigo, vamos explorar dicas práticas para ler mais, por onde
-            começar e como transformar a leitura em um elemento essencial do seu
-            dia a dia.
-          </p>
-          <h2>O Poder da Leitura: Por Quê Ler é Tão Importante?</h2>
-          <p>
-            Ler estimula o cérebro, melhora o vocabulário e aumenta a capacidade
-            de conexão entre ideias. Estudos científicos mostram que a leitura
-            regular pode:
-          </p>
-          <ul>
-            <li>
-              Reduzir o estresse: Segundo uma pesquisa da Universidade de
-              Sussex, apenas seis minutos de leitura por dia podem reduzir os
-              níveis de estresse em até 68%.
-            </li>
-            <li>
-              Melhorar a memória: A leitura ativa diferentes áreas do cérebro,
-              ajudando a fortalecer as conexões neurais.
-            </li>
-            <li>
-              Aumentar a empatia: Ler ficção nos coloca na pele dos personagens,
-              ajudando-nos a entender e respeitar diferentes perspectivas.
-            </li>
-          </ul>
-          <img src={IntersectImage1} alt="Book" />
+          <header>
+            <h2>
+              <GiWhiteBook className={styles.icons} /> Como Desenvolver o Hábito
+              da Leitura e Transformar Sua Vida
+            </h2>
+          </header>
+          <section>
+            <p>
+              A leitura é muito mais do que um passatempo; é uma ferramenta
+              poderosa para expandir conhecimentos, desenvolver habilidades
+              cognitivas e melhorar a qualidade de vida. Apesar de seus
+              benefícios, muitas pessoas enfrentam desafios para criar e manter
+              o hábito de leitura.
+            </p>
+            <p>
+              Neste artigo, vamos explorar dicas práticas para ler mais, por
+              onde começar e como transformar a leitura em um elemento essencial
+              do seu dia a dia.
+            </p>
+          </section>
 
-          <h2>
-            <BiSolidBookHeart className={styles.icons} />
-            Como Manter o Hábito de Leitura?
-          </h2>
-          <p>
-            <strong>1.Comece Pequeno</strong>
-            <br /> Não tente devorar um clássico da literatura logo de cara.
-            Escolha livros curtos ou que abordem temas de seu interesse.
-            Histórias envolventes ajudam a criar uma conexão emocional com a
-            leitura. <br />
-            <strong>2.Estabeleça uma Rotina</strong>
-            <br /> Dedique um horário específico do dia para ler. Pode ser pela
-            manhã, antes de dormir ou durante o trajeto no transporte público.
-            Transforme a leitura em um ritual. <br />
-            <strong>3.Tenha Metas Realistas</strong>
-            <br /> Defina objetivos alcançáveis, como ler 10 páginas por dia ou
-            um livro por mês. Conforme avança, ajuste suas metas. <br />
-            <strong>4.Crie um Ambiente Convidativo</strong>
-            <br /> Escolha um local tranquilo, bem iluminado e sem distrações
-            para ler. Um espaço acolhedor pode fazer toda a diferença. <br />
-            <strong>5.Tenha Sempre um Livro por Perto</strong>
-            <br /> Carregue um livro ou e-reader com você. Assim, é possível
-            aproveitar momentos de espera para ler algumas páginas.
-          </p>
+          <section>
+            <h2>O Poder da Leitura: Por Que Ler é Tão Importante?</h2>
+            <p>
+              Ler estimula o cérebro, melhora o vocabulário e aumenta a
+              capacidade de conexão entre ideias. Estudos científicos mostram
+              que a leitura regular pode:
+            </p>
+            <ul>
+              <li>
+                Reduzir o estresse: Apenas seis minutos de leitura por dia podem
+                reduzir o estresse em até 68%.
+              </li>
+              <li>
+                Melhorar a memória: Ativa diferentes áreas do cérebro,
+                fortalecendo conexões neurais.
+              </li>
+              <li>
+                Aumentar a empatia: Ler ficção nos coloca na pele dos
+                personagens, ajudando a compreender diferentes perspectivas.
+              </li>
+            </ul>
+            <img src={IntersectImage1} alt="Livro aberto" />
+          </section>
 
-          <h2>
-            <GiBurningBook className={styles.icons} />
-            Como Ler Mais:
-          </h2>
+          <section>
+            <h2>
+              <BiSolidBookHeart className={styles.icons} /> Como Manter o Hábito
+              de Leitura?
+            </h2>
+            <ol>
+              <li>
+                <strong>Comece Pequeno:</strong> Escolha livros curtos e
+                envolventes.
+              </li>
+              <li>
+                <strong>Estabeleça uma Rotina:</strong> Defina um horário fixo
+                para ler diariamente.
+              </li>
+              <li>
+                <strong>Tenha Metas Realistas:</strong> Exemplo: 10 páginas por
+                dia ou um livro por mês.
+              </li>
+              <li>
+                <strong>Crie um Ambiente Convidativo:</strong> Escolha um local
+                tranquilo e confortável.
+              </li>
+              <li>
+                <strong>Tenha Sempre um Livro por Perto:</strong> Leve um livro
+                ou e-reader com você.
+              </li>
+            </ol>
+          </section>
 
-          <ul>
-            <li>
-              <strong>Diversifique os Gênros: </strong>
-              Experimente diferentes tipos de literatura, como ficção,
-              biografias, poesia e livros técnicos. Isso evita a monotonia.
-            </li>
-            <li>
-              <strong>Participe de Grupos de Leitura:</strong> Compartilhar
-              experiências e debater sobre livros motiva a continuar lendo.
-            </li>
-            <li>
-              <strong>Aproveite Tecnologias:</strong> Aplicativos e audiolivros
-              são ótimos aliados para quem tem uma rotina corrida.
-            </li>
-          </ul>
-          <img src={IntersectImage2} alt="Book" />
-          <h2>Por Onde Começar?</h2>
-          <p>
-            Se você está perdido na escolha do primeiro livro, aqui estão
-            algumas sugestões:
-          </p>
+          <section>
+            <h2>
+              <GiBurningBook className={styles.icons} /> Como Ler Mais
+            </h2>
+            <ul>
+              <li>
+                <strong>Diversifique os Gêneros:</strong> Leia ficção,
+                biografias, poesia e livros técnicos.
+              </li>
+              <li>
+                <strong>Participe de Grupos de Leitura:</strong> Compartilhar
+                experiências motiva a leitura.
+              </li>
+              <li>
+                <strong>Aproveite Tecnologias:</strong> Use aplicativos e
+                audiolivros.
+              </li>
+            </ul>
+            <img src={IntersectImage2} alt="Pessoas lendo juntas" />
+          </section>
 
-          <ul>
-            <li>
-              <strong>Ficção:</strong> <em>O Pequeno Príncipe</em> (Antoine de
-              Saint-Exupéry) <em>ou 1984</em> (George Orwell).
-            </li>
-            <li>
-              <strong>Desenvolvimento Pessoal:</strong>
-              <em>Os 7 Hábitos das Pessoas Altamente Eficazes</em> (Stephen
-              Covey).
-            </li>
-            <li>
-              <strong>Biografias:</strong> <em>A História de Minha Vida </em>
-              (Helen Keller).
-            </li>
-          </ul>
+          <section>
+            <h2>Por Onde Começar?</h2>
+            <p>Se não sabe por onde começar, aqui estão algumas sugestões:</p>
+            <ul>
+              <li>
+                <strong>Ficção:</strong> <em>O Pequeno Príncipe</em> ou
+                <em>1984</em>.
+              </li>
+              <li>
+                <strong>Desenvolvimento Pessoal:</strong>
+                <em>Os 7 Hábitos das Pessoas Altamente Eficazes</em>.
+              </li>
+              <li>
+                <strong>Biografias:</strong> <em>A História de Minha Vida</em>
+                (Helen Keller).
+              </li>
+            </ul>
+          </section>
 
-          <h2>Por Que Criar Suas Próprias Histórias?</h2>
-          <p>
-            Ler histórias é inspirador, mas criar suas próprias histórias é
-            transformador. Escrever é uma forma de expressar sentimentos,
-            organizar pensamentos e explorar a criatividade. Além disso, a
-            prática da escrita:
-          </p>
-
-          <ul>
-            <li>
-              <strong> Desenvolve a Comunicação:</strong> Ao colocar suas ideias
-              no papel, você aprimora sua capacidade de se expressar de forma
-              clara e coerente.
-            </li>
-            <li>
-              <strong>Fortalece a Imaginacão:</strong> Criar personagens,
-              cenários e tramas estimula o cérebro a pensar fora da caixa.
-            </li>
-            <li>
-              <strong> Promove o Autoconhecimento:</strong> Escrever sobre suas
-              experiências ou criar mundos fictícios ajuda a entender melhor
-              quem você é e como enxerga o mundo.
-            </li>
-          </ul>
-          <img src={IntersectImage3} alt="Book" />
+          <section>
+            <h2>Por Que Criar Suas Próprias Histórias?</h2>
+            <p>
+              Escrever permite expressar sentimentos, organizar pensamentos e
+              estimular a criatividade.
+            </p>
+            <ul>
+              <li>
+                <strong>Desenvolve a Comunicação:</strong> Melhora a clareza na
+                expressão.
+              </li>
+              <li>
+                <strong>Fortalece a Imaginação:</strong> Criar personagens e
+                cenários expande a criatividade.
+              </li>
+              <li>
+                <strong>Promove o Autoconhecimento:</strong> Escrever ajuda a
+                compreender a própria visão de mundo.
+              </li>
+            </ul>
+            <img src={IntersectImage3} alt="Pessoa escrevendo" />
+          </section>
         </div>
-      </motion.div>
-    </div>
+      </motion.section>
+    </article>
   );
 };
 
