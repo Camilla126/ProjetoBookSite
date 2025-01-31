@@ -23,12 +23,10 @@ const Article: React.FC = () => {
         style={{ overflow: "hidden" }}
       >
         <div className={styles.articleContainer}>
-          <header>
-            <h2>
-              <GiWhiteBook className={styles.icons} /> Como Desenvolver o Hábito
-              da Leitura e Transformar Sua Vida
-            </h2>
-          </header>
+          <h2>
+            <GiWhiteBook className={styles.icons} /> Como Desenvolver o Hábito
+            da Leitura e Transformar Sua Vida
+          </h2>
           <section>
             <p>
               A leitura é muito mais do que um passatempo; é uma ferramenta
@@ -53,20 +51,25 @@ const Article: React.FC = () => {
             </p>
             <ul>
               <li>
-                Reduzir o estresse: Apenas seis minutos de leitura por dia podem
-                reduzir o estresse em até 68%.
+                <strong>Reduzir o estresse:</strong> Apenas seis minutos de
+                leitura por dia podem reduzir o estresse em até 68%.
               </li>
               <li>
-                Melhorar a memória: Ativa diferentes áreas do cérebro,
-                fortalecendo conexões neurais.
+                <strong> Melhorar a memória: </strong>Ativa diferentes áreas do
+                cérebro, fortalecendo conexões neurais.
               </li>
               <li>
-                Aumentar a empatia: Ler ficção nos coloca na pele dos
-                personagens, ajudando a compreender diferentes perspectivas.
+                <strong>Aumentar a empatia: </strong> Ler ficção nos coloca na
+                pele dos personagens, ajudando a compreender diferentes
+                perspectivas.
               </li>
-            </ul>
-            <img src={IntersectImage1} alt="Livro aberto" />
+            </ul>{" "}
           </section>
+          <img
+            src={IntersectImage1}
+            alt="Livro aberto"
+            className={styles.img1}
+          />
 
           <section>
             <h2>
@@ -75,24 +78,31 @@ const Article: React.FC = () => {
             </h2>
             <ol>
               <li>
-                <strong>Comece Pequeno:</strong> Escolha livros curtos e
-                envolventes.
+                <strong>Comece Pequeno:</strong> Não tente devorar um clássico
+                da literatura logo de cara. Escolha livros curtos ou que abordem
+                temas de seu interesse. Histórias envolventes ajudam a criar uma
+                conexão emocional com a leitura.
               </li>
               <li>
-                <strong>Estabeleça uma Rotina:</strong> Defina um horário fixo
-                para ler diariamente.
+                <strong>Estabeleça uma Rotina:</strong> Dedique um horário
+                específico do dia para ler. Pode ser pela manhã, antes de dormir
+                ou durante o trajeto no transporte público. Transforme a leitura
+                em um ritual.
               </li>
               <li>
-                <strong>Tenha Metas Realistas:</strong> Exemplo: 10 páginas por
-                dia ou um livro por mês.
+                <strong>enha Metas Realistas:</strong> Defina objetivos
+                alcançáveis, como ler 10 páginas por dia ou um livro por mês.
+                Conforme avança, ajuste suas metas.
               </li>
               <li>
                 <strong>Crie um Ambiente Convidativo:</strong> Escolha um local
-                tranquilo e confortável.
+                tranquilo, bem iluminado e sem distrações para ler. Um espaço
+                acolhedor pode fazer toda a diferença.
               </li>
               <li>
-                <strong>Tenha Sempre um Livro por Perto:</strong> Leve um livro
-                ou e-reader com você.
+                <strong>Tenha Sempre um Livro por Perto:</strong> Carregue um
+                livro ou e-reader com você. Assim, é possível aproveitar
+                momentos de espera para ler algumas páginas.
               </li>
             </ol>
           </section>
@@ -103,20 +113,25 @@ const Article: React.FC = () => {
             </h2>
             <ul>
               <li>
-                <strong>Diversifique os Gêneros:</strong> Leia ficção,
-                biografias, poesia e livros técnicos.
+                <strong>Diversifique os Gêneros:</strong> Experimente diferentes
+                tipos de literatura, como ficção, biografias, poesia e livros
+                técnicos. Isso evita a monotonia.
               </li>
               <li>
                 <strong>Participe de Grupos de Leitura:</strong> Compartilhar
-                experiências motiva a leitura.
+                experiências e debater sobre livros motiva a continuar lendo.
               </li>
               <li>
-                <strong>Aproveite Tecnologias:</strong> Use aplicativos e
-                audiolivros.
+                <strong>Aproveite Tecnologias:</strong>Aplicativos e audiolivros
+                são ótimos aliados para quem tem uma rotina corrida.
               </li>
             </ul>
-            <img src={IntersectImage2} alt="Pessoas lendo juntas" />
           </section>
+          <img
+            src={IntersectImage2}
+            alt="Pessoas lendo juntas"
+            className={styles.img2}
+          />
 
           <section>
             <h2>Por Onde Começar?</h2>
@@ -156,9 +171,13 @@ const Article: React.FC = () => {
                 <strong>Promove o Autoconhecimento:</strong> Escrever ajuda a
                 compreender a própria visão de mundo.
               </li>
-            </ul>
-            <img src={IntersectImage3} alt="Pessoa escrevendo" />
+            </ul>{" "}
           </section>
+          <img
+            src={IntersectImage3}
+            alt="Pessoa escrevendo"
+            className={styles.img3}
+          />
         </div>
       </motion.section>
     </article>
