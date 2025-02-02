@@ -71,33 +71,35 @@ const Article: React.FC = () => {
             className={styles.img1}
           />
 
-          <section>
+          <section className={styles.habitoleitura}>
             <h2>
               <BiSolidBookHeart className={styles.icons} /> Como Manter o Hábito
               de Leitura?
             </h2>
             <ol>
               <li>
-                <strong>Comece Pequeno:</strong> Não tente devorar um clássico
-                da literatura logo de cara. Escolha livros curtos ou que abordem
-                temas de seu interesse. Histórias envolventes ajudam a criar uma
-                conexão emocional com a leitura.
+                <strong>Comece Pequeno:</strong> <br />
+                Não tente devorar um clássico da literatura logo de cara.
+                Escolha livros curtos ou que abordem temas de seu interesse.
+                Histórias envolventes ajudam a criar uma conexão emocional com a
+                leitura.
               </li>
               <li>
-                <strong>Estabeleça uma Rotina:</strong> Dedique um horário
-                específico do dia para ler. Pode ser pela manhã, antes de dormir
-                ou durante o trajeto no transporte público. Transforme a leitura
-                em um ritual.
+                <strong>Estabeleça uma Rotina:</strong>
+                <br /> Dedique um horário específico do dia para ler. Pode ser
+                pela manhã, antes de dormir ou durante o trajeto no transporte
+                público. Transforme a leitura em um ritual.
               </li>
               <li>
-                <strong>enha Metas Realistas:</strong> Defina objetivos
-                alcançáveis, como ler 10 páginas por dia ou um livro por mês.
-                Conforme avança, ajuste suas metas.
+                <strong>enha Metas Realistas:</strong>
+                <br /> Defina objetivos alcançáveis, como ler 10 páginas por dia
+                ou um livro por mês. Conforme avança, ajuste suas metas.
               </li>
               <li>
-                <strong>Crie um Ambiente Convidativo:</strong> Escolha um local
-                tranquilo, bem iluminado e sem distrações para ler. Um espaço
-                acolhedor pode fazer toda a diferença.
+                <strong>Crie um Ambiente Convidativo:</strong>
+                <br /> Escolha um local tranquilo, bem iluminado e sem
+                distrações para ler. Um espaço acolhedor pode fazer toda a
+                diferença.
               </li>
               <li>
                 <strong>Tenha Sempre um Livro por Perto:</strong> Carregue um
@@ -107,7 +109,7 @@ const Article: React.FC = () => {
             </ol>
           </section>
 
-          <section>
+          <section className={styles.lerMais}>
             <h2>
               <GiBurningBook className={styles.icons} /> Como Ler Mais
             </h2>
@@ -133,7 +135,7 @@ const Article: React.FC = () => {
             className={styles.img2}
           />
 
-          <section>
+          <section className={styles.comecar}>
             <h2>Por Onde Começar?</h2>
             <p>Se não sabe por onde começar, aqui estão algumas sugestões:</p>
             <ul>

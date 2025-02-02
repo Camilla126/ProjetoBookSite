@@ -1,5 +1,7 @@
 .main {
   margin-top: -200px;
+
+  max-width: 1400px;
   button {
     height: 30px;
     margin-left: 700px;
@@ -36,6 +38,19 @@
     strong {
       font-weight: 500;
     }
+
+    .habitoleitura {
+      width: 700px;
+      display: flex;
+      flex-direction: column;
+    }
+    .lerMais {
+      width: 900px;
+    }
+
+    .comecar {
+      margin-top: -100px;
+    }
   }
   .icons {
     color: #f6346d;
@@ -44,11 +59,13 @@
   }
   .img1 {
     float: left;
-    margin-left: -100px;
+    margin-left: 0px;
+
     margin-top: -30px;
   }
 
   .img2 {
+    float: right;
   }
 
   .img3 {
