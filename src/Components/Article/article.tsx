@@ -25,9 +25,9 @@ const Article: React.FC = () => {
         <div className={styles.articleContainer}>
           <h2>
             <GiWhiteBook className={styles.icons} /> Como Desenvolver o Hábito
-            da Leitura e Transformar Sua Vida
+            da Leitura e Transformar Sua Vida.
           </h2>
-          <section>
+          <section className={styles.section}>
             <p>
               A leitura é muito mais do que um passatempo; é uma ferramenta
               poderosa para expandir conhecimentos, desenvolver habilidades
@@ -41,9 +41,8 @@ const Article: React.FC = () => {
               do seu dia a dia.
             </p>
           </section>
-
-          <section>
-            <h2>O Poder da Leitura: Por Que Ler é Tão Importante?</h2>
+          <h2>O Poder da Leitura: Por Que Ler é Tão Importante?</h2>
+          <section className={styles.section}>
             <p>
               Ler estimula o cérebro, melhora o vocabulário e aumenta a
               capacidade de conexão entre ideias. Estudos científicos mostram
@@ -70,12 +69,11 @@ const Article: React.FC = () => {
             alt="Livro aberto"
             className={styles.img1}
           />
-
-          <section className={styles.habitoleitura}>
-            <h2>
-              <BiSolidBookHeart className={styles.icons} /> Como Manter o Hábito
-              de Leitura?
-            </h2>
+          <h2>
+            <BiSolidBookHeart className={styles.icons} /> Como Manter o Hábito
+            de Leitura?
+          </h2>
+          <section className={styles.section}>
             <ol>
               <li>
                 <strong>Comece Pequeno:</strong> <br />
@@ -91,7 +89,7 @@ const Article: React.FC = () => {
                 público. Transforme a leitura em um ritual.
               </li>
               <li>
-                <strong>enha Metas Realistas:</strong>
+                <strong>Tenha Metas Realistas:</strong>
                 <br /> Defina objetivos alcançáveis, como ler 10 páginas por dia
                 ou um livro por mês. Conforme avança, ajuste suas metas.
               </li>
@@ -108,11 +106,8 @@ const Article: React.FC = () => {
               </li>
             </ol>
           </section>
-
-          <section className={styles.lerMais}>
-            <h2>
-              <GiBurningBook className={styles.icons} /> Como Ler Mais
-            </h2>
+          <h2>Como Ler Mais?</h2>
+          <section className={styles.section}>
             <ul>
               <li>
                 <strong>Diversifique os Gêneros:</strong> Experimente diferentes
@@ -134,44 +129,52 @@ const Article: React.FC = () => {
             alt="Pessoas lendo juntas"
             className={styles.img2}
           />
-
-          <section className={styles.comecar}>
-            <h2>Por Onde Começar?</h2>
+          <h2>
+            {" "}
+            <GiBurningBook className={styles.icons} />
+            Por Onde Começar?
+          </h2>
+          <section className={styles.section}>
             <p>Se não sabe por onde começar, aqui estão algumas sugestões:</p>
             <ul>
               <li>
-                <strong>Ficção:</strong> <em>O Pequeno Príncipe</em> ou
-                <em>1984</em>.
+                <strong>Ficção:</strong> O Pequeno Príncipe{" "}
+                <em>(Antoine de Saint-Exupéry) </em>ou 1984{" "}
+                <em>(George Orwell).</em>
               </li>
               <li>
                 <strong>Desenvolvimento Pessoal:</strong>
-                <em>Os 7 Hábitos das Pessoas Altamente Eficazes</em>.
+                Os 7 Hábitos das Pessoas Altamente Eficazes{" "}
+                <em>(Stephen Covey)</em>.
               </li>
               <li>
-                <strong>Biografias:</strong> <em>A História de Minha Vida</em>
-                (Helen Keller).
+                <strong>Biografias:</strong> A História de Minha Vida
+                <em>(Helen Keller).</em>
               </li>
             </ul>
           </section>
-
-          <section>
-            <h2>Por Que Criar Suas Próprias Histórias?</h2>
+          <h2>Por Que Criar Suas Próprias Histórias?</h2>
+          <section className={styles.section}>
             <p>
-              Escrever permite expressar sentimentos, organizar pensamentos e
-              estimular a criatividade.
+              Ler histórias é inspirador, mas criar suas próprias histórias é
+              transformador. Escrever é uma forma de expressar sentimentos,
+              organizar pensamentos e explorar a criatividade. Além disso, a
+              prática da escrita:
             </p>
             <ul>
               <li>
-                <strong>Desenvolve a Comunicação:</strong> Melhora a clareza na
-                expressão.
+                <strong>Desenvolve a Comunicação:</strong> Ao colocar suas
+                ideias no papel, você aprimora sua capacidade de se expressar de
+                forma clara e coerente.
               </li>
               <li>
-                <strong>Fortalece a Imaginação:</strong> Criar personagens e
-                cenários expande a criatividade.
+                <strong>Fortalece a Imaginação:</strong> Criar personagens,
+                cenários e tramas estimula o cérebro a pensar fora da caixa.
               </li>
               <li>
-                <strong>Promove o Autoconhecimento:</strong> Escrever ajuda a
-                compreender a própria visão de mundo.
+                <strong>Promove o Autoconhecimento:</strong> Escrever sobre suas
+                experiências ou criar mundos fictícios ajuda a entender melhor
+                quem você é e como enxerga o mundo.
               </li>
             </ul>{" "}
           </section>
