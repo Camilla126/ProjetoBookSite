@@ -8,10 +8,6 @@
   font-weight: 300;
 }
 
-* ::-webkit-scrollbar {
-  display: none;
-}
-
 body {
   min-width: 320px;
   min-height: 100vh;
