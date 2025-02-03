@@ -6,6 +6,7 @@
     margin-left: 30px;
     width: 850px;
     height: 800px;
+    margin-top: 0px;
   }
 
   .formContainer {
@@ -23,8 +24,7 @@
       font-weight: 400;
 
       .iconLogo {
-        position: relative;
-        top: 5px;
+        margin-bottom: -5px;
         font-size: 50px;
         color: #f76e96;
       }
@@ -34,27 +34,24 @@
       display: flex;
       font-size: 40px;
       font-family: "Montserrat", serif;
-      font-optical-sizing: auto;
       font-weight: 500;
     }
     .iconRegister {
       font-size: 80px;
-      position: relative;
-      bottom: 10px;
+      margin-top: -10px;
+
       color: #f76e96;
     }
   }
 
   .form {
-    position: relative;
-    bottom: 20px;
     label {
       font-size: 25px;
       font-weight: 300;
     }
     input {
+      margin-bottom: 20px;
       outline: none;
-
       width: 440px;
       height: 10px;
       display: block;
@@ -71,32 +68,29 @@
     input::placeholder {
       color: #eae1e1;
       font-size: 25px;
-      position: relative;
     }
     .iconUser {
-      position: relative;
-      top: 60px;
-      right: 195px;
+      margin-bottom: -55px;
+      margin-left: -200px;
       font-size: 35px;
       color: #f76e96;
     }
     .iconEmail {
-      position: relative;
-      top: 60px;
-      right: 50px;
+      margin-bottom: -55px;
+      margin-left: -55px;
       font-size: 35px;
       color: #f76e96;
     }
     .iconPassword {
-      position: relative;
-      top: 60px;
-      right: 60px;
+      margin-bottom: -55px;
+      margin-left: -60px;
       font-size: 35px;
       color: #f76e96;
     }
   }
 
   button {
+    margin-top: 20px;
     color: #ffff;
     width: 570px;
     height: 85px;
@@ -115,7 +109,6 @@
   .linkContainer {
     font-size: 20px;
     display: flex;
-    position: relative;
 
     .linkRegister {
       text-decoration: none;
@@ -133,8 +126,7 @@
     align-items: center;
     justify-content: center;
     color: red;
-    position: relative;
-    top: 10px;
+    margin-top: 10px;
     font-size: 15px;
   }
 }

@@ -1,12 +1,13 @@
-import { GiSpellBook } from "react-icons/gi";
-import { PiBookOpenTextThin } from "react-icons/pi";
-import { PiBooksThin } from "react-icons/pi";
-import { PiRankingLight } from "react-icons/pi";
-import IntersectImage from "../../assets/IMG_home/Group 1.png";
-
-import Article from "../../Components/Article/article";
-
 import { Link } from "react-router-dom";
+import { GiSpellBook } from "react-icons/gi";
+import {
+  PiBookOpenTextThin,
+  PiBooksThin,
+  PiRankingLight,
+} from "react-icons/pi";
+
+import IntersectImage from "../../assets/IMG_home/Group 1.png";
+import Article from "../../Components/Article/article";
 
 import styles from "./styles.module.scss";
 
@@ -14,7 +15,7 @@ const Home = () => {
   return (
     <main className={styles.main}>
       <h1>
-        Bem vindo ao BookWorms <GiSpellBook className={styles.iconTitle} />
+        Bem-vindo ao BookWorms <GiSpellBook className={styles.iconTitle} />
       </h1>
 
       <div className={styles.buttonContainer}>
@@ -33,7 +34,7 @@ const Home = () => {
         </Link>
 
         <Link to="/bestreader">
-          <button className={styles.button3}>
+          <button>
             Melhores leitores
             <PiRankingLight className={styles.icons} />
           </button>
@@ -41,8 +42,10 @@ const Home = () => {
       </div>
 
       <img src={IntersectImage} alt="Book" />
+
       <Article />
     </main>
   );
 };
+
 export default Home;

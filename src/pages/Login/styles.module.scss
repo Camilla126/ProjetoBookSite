@@ -2,12 +2,6 @@
   display: flex;
   align-items: center;
 
-  img {
-    margin-left: 30px;
-    width: 850px;
-    height: 800px;
-  }
-
   .formContainer {
     display: flex;
     flex-direction: column;
@@ -23,8 +17,7 @@
       font-weight: 400;
 
       .iconLogo {
-        position: relative;
-        top: 5px;
+        margin-bottom: -5px;
         font-size: 50px;
         color: #f76e96;
       }
@@ -36,6 +29,7 @@
       font-optical-sizing: auto;
       font-weight: 500;
     }
+
     .iconLogin {
       font-size: 100px;
       display: block;
@@ -44,13 +38,19 @@
     }
   }
 
+  img {
+    margin-left: 30px;
+    width: 850px;
+    height: 800px;
+    margin-top: 0px;
+  }
+
   .erro {
     display: block;
     align-items: center;
     justify-content: center;
     color: red;
-    position: relative;
-    bottom: 10px;
+    margin-top: -10px;
   }
 
   .form {
@@ -58,6 +58,7 @@
       font-size: 25px;
       font-weight: 300;
     }
+
     input {
       outline: none;
       margin-bottom: 20px;
@@ -77,17 +78,16 @@
     input::placeholder {
       color: #eae1e1;
       font-size: 25px;
-      position: relative;
     }
 
     .iconCamp {
-      position: relative;
-      top: 60px;
-      right: 60px;
+      margin-bottom: -55px;
+      margin-left: -65px;
       font-size: 35px;
       color: #f76e96;
     }
   }
+
   button {
     color: #ffff;
     width: 570px;
@@ -108,11 +108,13 @@
   .linkContainer {
     font-size: 20px;
     display: flex;
+
     .linkRegister {
       text-decoration: none;
       margin-left: 10px;
       color: black;
     }
+
     .linkRegister:hover {
       color: #f76e96;
       text-decoration: underline;
