@@ -4,18 +4,20 @@ import {
   SlSocialLinkedin,
 } from "react-icons/sl";
 
+import styles from "./styles.module.scss";
+
 const Footer = () => {
   return (
     <footer>
-      <div>
+      <div className={styles.footerContainer}>
         <a href="">
-          <SlSocialGithub />
+          <SlSocialGithub className={styles.icons} />
         </a>
         <a href="">
-          <SlSocialInstagram />
+          <SlSocialInstagram className={styles.icons} />
         </a>
         <a href="">
-          <SlSocialLinkedin />
+          <SlSocialLinkedin className={styles.icons} />
         </a>
 
         <p>Create by Camilla</p>

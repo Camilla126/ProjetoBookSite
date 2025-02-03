@@ -15,7 +15,6 @@ const Article: React.FC = () => {
       <button onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen}>
         {isOpen ? "Esconder Conteúdo ⬆" : "Mostrar Artigo ⬇"}
       </button>
-
       <motion.section
         initial={{ height: 0, opacity: 0 }}
         animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
@@ -184,7 +183,7 @@ const Article: React.FC = () => {
             className={styles.img3}
           />
         </div>
-      </motion.section>
+      </motion.section>{" "}
     </article>
   );
 };
