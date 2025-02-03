@@ -1,14 +1,12 @@
 .main {
   max-width: 1400px;
-
   padding: 20px;
   font-family: "Arial", sans-serif;
   color: #333;
 
   button {
-    display: block;
+    display: flex;
     margin: auto;
-
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;

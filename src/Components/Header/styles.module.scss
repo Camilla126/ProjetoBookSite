@@ -7,14 +7,12 @@
   height: 80px;
   position: fixed;
   top: 0;
-  left: 0;
   z-index: 1000;
 
   .userSection {
     display: flex;
     align-items: center;
-    position: relative;
-    left: 40px;
+    margin-left: 40px;
 
     .iconUser {
       width: 50px;
@@ -24,8 +22,7 @@
 
     .userName {
       font-size: 20px;
-      position: relative;
-      left: 10px;
+      margin-left: 10px;
     }
   }
 
@@ -40,12 +37,10 @@
     }
     .navItems {
       display: flex;
-      position: relative;
       gap: 50px;
     }
 
     .navItem {
-      position: relative;
       text-decoration: none;
       color: black;
       display: flex;
@@ -56,7 +51,6 @@
 
       &:hover {
         color: #353131b9;
-
         transition: color 0.3s ease;
       }
 
@@ -76,8 +70,7 @@
   }
 
   .logoutLink {
-    position: relative;
-    right: 40px;
+    margin-right: 40px;
     color: black;
     display: flex;
     align-items: center;
@@ -89,8 +82,6 @@
       transition: 1s;
     }
     .iconSair {
-      position: relative;
-      right: 4px;
       width: 40px;
       height: 40px;
       color: #ffffff;

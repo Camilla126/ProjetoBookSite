@@ -12,11 +12,10 @@ export default function Header() {
   const { logOut, user } = useContext(AuthContext) as AuthContextInterface;
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("/home");
-  console.log(activeTab);
+
   const routeToRender = ["/saved", "/home", "/feed"];
 
   useEffect(() => {
-    console.log(location.pathname);
     setActiveTab(location.pathname);
   }, [location]);
 
