@@ -41,7 +41,6 @@ const Home = () => {
       </div>
 
       <img src={IntersectImage} alt="Book" />
-
       <Article />
     </main>
   );
