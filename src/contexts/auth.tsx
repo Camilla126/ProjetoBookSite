@@ -40,7 +40,6 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
         setUser(JSON.parse(userData));
       }
     } catch {
-      console.error("erro ao passar dados do usuario");
       localStorage.removeItem("@AuthUser");
     }
   }, []);
@@ -62,7 +61,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
         setUser(userData);
         localStorage.setItem("@AuthUser", JSON.stringify(userData));
 
-        toast.success("Bem vindo ao BookWorms!");
+        toast.success("Bem vindo!");
       }
     } catch {
       toast.error("Email ou senha incorretos. Tente novamente.");
@@ -94,8 +93,6 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
       setUser(userData);
       localStorage.setItem("@AuthUser", JSON.stringify(userData));
-
-      toast.success("Bem vindo ao sistema!");
     } catch {
       toast.error("Erro ao cadastrar. Verifique os dados e tente novamente.");
     } finally {
@@ -108,7 +105,6 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
       await signOut(auth);
       setUser(null);
       localStorage.removeItem("@AuthUser");
-      toast.info("Você saiu do sistema.");
     } catch {
       toast.error("Erro ao sair do sistema. Tente novamente.");
     }

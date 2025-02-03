@@ -18,30 +18,30 @@ const Home = () => {
         Bem-vindo ao BookWorms <GiSpellBook className={styles.iconTitle} />
       </h1>
 
-      <div className={styles.buttonContainer}>
-        <Link to="/mystory">
-          <button>
-            Criar minha história
-            <PiBookOpenTextThin className={styles.icons} />
-          </button>
-        </Link>
+      <div className={styles.contentContainer}>
+        <div className={styles.buttonContainer}>
+          <Link to="/mystory">
+            <button>
+              Criar minha história
+              <PiBookOpenTextThin className={styles.icons} />
+            </button>
+          </Link>
+          <Link to="/mybooks">
+            <button>
+              Meus livros
+              <PiBooksThin className={styles.icons} />
+            </button>
+          </Link>
+          <Link to="/bestreader">
+            <button>
+              Melhores leitores
+              <PiRankingLight className={styles.icons} />
+            </button>
+          </Link>{" "}
+        </div>
 
-        <Link to="/mybooks">
-          <button>
-            Meus livros
-            <PiBooksThin className={styles.icons} />
-          </button>
-        </Link>
-
-        <Link to="/bestreader">
-          <button>
-            Melhores leitores
-            <PiRankingLight className={styles.icons} />
-          </button>
-        </Link>
+        <img src={IntersectImage} alt="Book" />
       </div>
-
-      <img src={IntersectImage} alt="Book" />
 
       <Article />
     </main>
