@@ -24,7 +24,7 @@ const Article: React.FC = () => {
         <div className={styles.articleContainer}>
           <h2>
             <GiWhiteBook className={styles.icons} /> Como Desenvolver o Hábito
-            da Leitura e Transformar Sua Vida.
+            da Leitura e Transformar a Sua Vida.
           </h2>
           <section className={styles.section}>
             <p>

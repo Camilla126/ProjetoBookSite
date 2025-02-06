@@ -10,13 +10,13 @@ const Footer = () => {
   return (
     <footer>
       <div className={styles.footerContainer}>
-        <a href="">
+        <a href="https://github.com/Camilla126">
           <SlSocialGithub className={styles.icons} />
         </a>
-        <a href="">
+        <a href="https://www.instagram.com/mylla_artss">
           <SlSocialInstagram className={styles.icons} />
         </a>
-        <a href="">
+        <a href="https://www.linkedin.com/in/camilla-carvalho-desenvolvedorafront-end/">
           <SlSocialLinkedin className={styles.icons} />
         </a>
 

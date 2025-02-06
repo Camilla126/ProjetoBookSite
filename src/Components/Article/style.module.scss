@@ -1,13 +1,12 @@
 .main {
-  max-width: 1400px;
-  padding: 20px;
+  max-width: 1000px;
   font-family: "Arial", sans-serif;
   color: #333;
 
   button {
     display: flex;
     margin: auto;
-    margin-top: -250px;
+    margin-top: -180px;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -32,14 +31,14 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 30px;
+      font-size: 25px;
       font-weight: 700;
       margin: 20px 0;
       color: #222;
     }
 
     p {
-      font-size: 23px;
+      font-size: 20px;
       line-height: 1.6;
       margin: 10px;
       color: #444;
@@ -47,7 +46,7 @@
 
     ul,
     ol {
-      font-size: 23px;
+      font-size: 20px;
       padding-left: 25px;
 
       li {
@@ -75,13 +74,13 @@
     img {
       margin: 0px auto;
       margin-top: -100px;
-      height: 900px;
-      width: 800px;
+      height: 700px;
+      width: 600px;
       margin-bottom: -90px;
     }
     .img3 {
-      height: 1000px;
-      width: 900px;
+      height: 900px;
+      width: 800px;
     }
   }
 
@@ -93,7 +92,10 @@
     }
 
     button {
-      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
     }
   }
 }

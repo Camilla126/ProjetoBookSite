@@ -7,13 +7,13 @@
 }
 
 h1 {
-  font-size: 55px;
+  font-size: 40px;
   font-family: Diphylleia;
   text-align: center;
 }
 
 .iconTitle {
-  font-size: 70px;
+  font-size: 50px;
   color: #f76e96;
 }
 .contentContainer {
@@ -23,29 +23,30 @@ h1 {
 }
 .buttonContainer {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-  margin-left: 150px;
-  margin-top: 100px;
+  margin-top: 50px;
+  margin-left: 70px;
   gap: 30px;
 }
 
 .buttonContainer button {
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 -1px 6px rgba(0, 0, 0, 0.1);
   background-color: white;
+  cursor: pointer;
+  border-radius: 15px;
+  width: 350px;
+  height: 100px;
+  border: none;
+  outline: none;
+  font-size: 26px;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  cursor: pointer;
-  border-radius: 15px;
-  width: 420px;
-  height: 120px;
-  border: none;
-  outline: none;
-  font-size: 30px;
-  color: #333;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  gap: 10px;
 }
 
 .buttonContainer button:hover {
@@ -54,7 +55,7 @@ h1 {
 }
 
 .buttonContainer button .icons {
-  font-size: 60px;
+  font-size: 45px;
   color: #ff81ae;
 }
 
@@ -68,6 +69,6 @@ h1 {
 
 img {
   margin-top: -100px;
-  width: 650px;
-  height: 850px;
+  width: 490px;
+  height: 650px;
 }
