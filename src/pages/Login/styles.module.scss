@@ -7,14 +7,15 @@
     max-width: 650px;
     max-height: 610px;
     margin-top: 0px;
+    margin-left: -150px;
   }
   .formContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-right: 90px;
     flex-direction: column;
+    margin-left: 50px;
 
     h3 {
       font-size: 30px;
@@ -22,25 +23,27 @@
       font-weight: 400;
 
       .iconLogo {
-        font-size: 40px;
+        font-size: 35px;
+        margin-bottom: -2px;
         color: #f76e96;
       }
     }
 
     h2 {
-      font-size: 50px;
+      font-size: 45px;
       font-family: "Montserrat", serif;
       font-weight: 500;
     }
 
     .iconLogin {
       font-size: 80px;
-      display: block;
-
+      display: flex;
       color: #f76e96;
+      margin-left: 200px;
     }
     label {
-      width: 100;
+      margin-bottom: -10px;
+      width: 100%;
       text-align: left;
       display: block;
       font-size: 20px;
@@ -50,27 +53,27 @@
     input {
       outline: none;
       margin-bottom: 20px;
-      width: 400px;
-      height: 10px;
-      display: block;
+      width: 480px;
+      height: 60px;
+      text-indent: 60px;
+      display: flex;
       justify-content: center;
       align-items: center;
       border-radius: 10px;
       font-size: 20px;
-      padding: 30px 65px;
       border: none;
       box-shadow: 0 6px 6px rgba(0, 0, 0, 0.329);
       font-weight: 400;
-    }
 
-    input::placeholder {
-      color: #eae1e1;
-      font-size: 25px;
+      &::placeholder {
+        color: #eae1e1;
+        font-size: 25px;
+      }
     }
 
     .iconCamp {
-      margin-bottom: -55px;
-      margin-left: -470px;
+      margin-bottom: -50px;
+      margin-left: -420px;
       font-size: 35px;
       color: #f76e96;
     }
@@ -83,11 +86,11 @@
 
     button {
       color: #ffff;
-      width: 530px;
-      height: 85px;
+      width: 480px;
+      height: 70px;
       border-radius: 10px;
       background-color: rgb(17, 17, 17);
-      font-size: 40px;
+      font-size: 35px;
       font-weight: 400;
       margin-top: 5px;
       cursor: pointer;
@@ -102,7 +105,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 20px;
+      font-size: 18px;
       margin: 15px;
 
       .linkRegister {

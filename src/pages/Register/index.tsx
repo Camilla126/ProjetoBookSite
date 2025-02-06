@@ -81,15 +81,14 @@ export default function Register() {
     <main className={styles.main}>
       <img src={IntersectImage} alt="Book" />
       <form className={styles.formContainer} onSubmit={handleSubmit}>
-        <h3>
-          <GiSpellBook className={styles.iconLogo} /> BookWorms
-        </h3>
-        <h2>
-          <PiUserCircleFill className={styles.iconRegister} />
-          Cadastre-se
-        </h2>
-
-        <div className={styles.form}>
+        <div>
+          <h3>
+            <GiSpellBook className={styles.iconLogo} /> BookWorms
+          </h3>
+          <h2>
+            <PiUserCircleFill className={styles.iconRegister} />
+            Cadastre-se
+          </h2>
           <label>Nome de usuário</label>
           <PiUserLight className={styles.iconUser} />
           <input
@@ -100,8 +99,6 @@ export default function Register() {
             name="username"
           />{" "}
           {errors.name && <span className={styles.erro}>{errors.name}</span>}
-        </div>
-        <div className={styles.form}>
           <label>Email</label>
           <AiOutlineMail className={styles.iconEmail} />
           <input
@@ -112,8 +109,6 @@ export default function Register() {
             name="email"
           />{" "}
           {errors.email && <span className={styles.erro}>{errors.email}</span>}
-        </div>
-        <div className={styles.form}>
           <label htmlFor="password">Senha</label>
           <RiLockPasswordLine className={styles.iconPassword} />
           <input
@@ -126,15 +121,15 @@ export default function Register() {
           {errors.password && (
             <span className={styles.erro}>{errors.password}</span>
           )}
-        </div>
-        <button type="submit">
-          {loadingAuth ? "Carregando..." : "Cadastrar"}
-        </button>
-        <div className={styles.linkContainer}>
-          <p>Já tem uma conta?</p>
-          <Link to="/" className={styles.linkRegister}>
-            Faça Login
-          </Link>
+          <button type="submit">
+            {loadingAuth ? "Carregando..." : "Cadastrar"}
+          </button>
+          <div className={styles.linkContainer}>
+            <p>Já tem uma conta?</p>
+            <Link to="/" className={styles.linkRegister}>
+              Faça Login
+            </Link>
+          </div>
         </div>
       </form>
     </main>
