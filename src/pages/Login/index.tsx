@@ -70,16 +70,19 @@ export default function Login() {
 
   return (
     <main className={styles.main}>
+      {" "}
       <img src={IntersectImage} alt="Book" />
       <form className={styles.formContainer} onSubmit={handleSignIn}>
-        <h3>
-          <GiSpellBook className={styles.iconLogo} /> BookWorms
-        </h3>
-        <h2>
-          <PiUserCircleFill className={styles.iconLogin} />
-          Faça Login
-        </h2>
-        <div className={styles.form}>
+        {" "}
+        <div>
+          <h3>
+            <GiSpellBook className={styles.iconLogo} /> BookWorms
+          </h3>
+          <h2>
+            <PiUserCircleFill className={styles.iconLogin} />
+            Faça Login
+          </h2>
+
           <label>Email </label>
           <AiOutlineMail className={styles.iconCamp} />
           <input
@@ -90,8 +93,7 @@ export default function Login() {
             name="email"
           />
           {errors.email && <span className={styles.erro}>{errors.email}</span>}
-        </div>
-        <div className={styles.form}>
+
           <label htmlFor="password">Senha</label>
           <RiLockPasswordLine className={styles.iconCamp} />
           <input
@@ -104,14 +106,17 @@ export default function Login() {
           {errors.password && (
             <span className={styles.erro}> {errors.password}</span>
           )}
-        </div>
-        <button type="submit">{loadingAuth ? "Carregando..." : "Login"}</button>
-        <div className={styles.linkContainer}>
-          <p>Não tem uma conta?</p>
-          <Link to="/register" className={styles.linkRegister}>
-            Cadastre-se
-          </Link>
-        </div>
+
+          <button type="submit">
+            {loadingAuth ? "Carregando..." : "Login"}
+          </button>
+          <div className={styles.linkContainer}>
+            <p>Não tem uma conta?</p>
+            <Link to="/register" className={styles.linkRegister}>
+              Cadastre-se
+            </Link>
+          </div>
+        </div>{" "}
       </form>
     </main>
   );
