@@ -82,15 +82,17 @@ export default function Register() {
       <img src={IntersectImage} alt="Book" />
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         <div>
-          <h3>
-            <GiSpellBook className={styles.iconLogo} /> BookWorms
-          </h3>
-          <h2>
-            <PiUserCircleFill className={styles.iconRegister} />
-            Cadastre-se
-          </h2>
+          <div className={styles.title}>
+            <h3>
+              <GiSpellBook className={styles.iconLogo} /> BookWorms
+            </h3>
+            <h2>
+              <PiUserCircleFill className={styles.iconRegister} />
+              Cadastre-se
+            </h2>
+          </div>
           <label>Nome de usuário</label>
-          <PiUserLight className={styles.iconUser} />
+          <PiUserLight className={styles.icons} />
           <input
             type="text"
             placeholder="Usuário"
@@ -100,7 +102,7 @@ export default function Register() {
           />{" "}
           {errors.name && <span className={styles.erro}>{errors.name}</span>}
           <label>Email</label>
-          <AiOutlineMail className={styles.iconEmail} />
+          <AiOutlineMail className={styles.icons} />
           <input
             type="text"
             placeholder="Digite um @email"
@@ -110,7 +112,7 @@ export default function Register() {
           />{" "}
           {errors.email && <span className={styles.erro}>{errors.email}</span>}
           <label htmlFor="password">Senha</label>
-          <RiLockPasswordLine className={styles.iconPassword} />
+          <RiLockPasswordLine className={styles.icons} />
           <input
             type="password"
             placeholder="********"

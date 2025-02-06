@@ -18,31 +18,35 @@
     flex-direction: column;
     margin-left: 50px;
 
-    h3 {
-      font-size: 30px;
-      font-family: "Lavishly Yours", serif;
-      font-weight: 400;
-      .iconLogo {
+    .title {
+      margin-bottom: 10px;
+      margin-top: 10px;
+
+      h3 {
+        font-size: 30px;
+        font-family: "Lavishly Yours", serif;
+        font-weight: 400;
+        .iconLogo {
+          font-size: 35px;
+          margin-bottom: -2px;
+          color: #f76e96;
+        }
+      }
+
+      h2 {
         font-size: 35px;
-        margin-bottom: -2px;
+        font-family: "Montserrat", serif;
+        font-weight: 500;
+      }
+      .iconRegister {
+        font-size: 60px;
+        margin-bottom: -15px;
         color: #f76e96;
       }
     }
 
-    h2 {
-      font-size: 45px;
-      font-family: "Montserrat", serif;
-      font-weight: 500;
-    }
-    .iconRegister {
-      font-size: 80px;
-      margin-top: -10px;
-      font-size: 80px;
-      color: #f76e96;
-    }
-
     label {
-      margin-bottom: -10px;
+      margin-bottom: -20px;
       width: 100%;
       text-align: left;
       display: block;
@@ -70,21 +74,9 @@
       }
     }
 
-    .iconUser {
-      margin-bottom: -55px;
-      margin-left: -200px;
-      font-size: 35px;
-      color: #f76e96;
-    }
-    .iconEmail {
-      margin-bottom: -55px;
-      margin-left: -55px;
-      font-size: 35px;
-      color: #f76e96;
-    }
-    .iconPassword {
-      margin-bottom: -55px;
-      margin-left: -60px;
+    .icons {
+      margin-bottom: -50px;
+      margin-left: -420px;
       font-size: 35px;
       color: #f76e96;
     }
@@ -97,7 +89,7 @@
       background-color: rgb(17, 17, 17);
       font-size: 35px;
       font-weight: 400;
-      margin-top: 5px;
+      margin-top: 25px;
       cursor: pointer;
     }
 
@@ -125,12 +117,11 @@
     }
 
     .erro {
-      display: block;
+      display: flex;
       align-items: center;
-      justify-content: center;
+      margin-top: -10px;
+      margin-bottom: 10px;
       color: red;
-      margin-top: 10px;
-      font-size: 15px;
     }
   }
 }
