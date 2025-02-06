@@ -4,8 +4,8 @@
   justify-content: center;
 
   img {
-    max-width: 650px;
-    max-height: 610px;
+    width: 630px;
+    height: 630px;
     margin-top: 0px;
     margin-left: -150px;
   }
@@ -67,7 +67,7 @@
 
       &::placeholder {
         color: #eae1e1;
-        font-size: 25px;
+        font-size: 20px;
       }
     }
 
@@ -90,7 +90,7 @@
       height: 70px;
       border-radius: 10px;
       background-color: rgb(17, 17, 17);
-      font-size: 35px;
+      font-size: 30px;
       font-weight: 400;
       margin-top: 25px;
       cursor: pointer;
