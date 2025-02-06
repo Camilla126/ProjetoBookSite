@@ -62,9 +62,9 @@ export default function Header() {
                 activeTab === "/home"
                   ? 0
                   : activeTab === "/feed"
-                  ? 200
+                  ? 209
                   : activeTab === "/saved"
-                  ? 380
+                  ? 417
                   : 0
               }%)`,
               display: routeToRender.includes(activeTab) ? "flex" : "none",
