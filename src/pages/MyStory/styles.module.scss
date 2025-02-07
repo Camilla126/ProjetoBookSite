@@ -2,13 +2,16 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 100%;
-  height: 100vh;
+  height: 130vh;
 
   .storyContainer {
     h1 {
+      margin: 20px;
       text-align: center;
+      .icon {
+        color: #f76e96;
+      }
     }
 
     .img1 {
@@ -16,9 +19,23 @@ main {
       height: 100px;
     }
     .storyArea {
-      label {
-      }
-      input {
+      display: flex;
+      align-items: center;
+      justify-self: center;
+      flex-direction: column;
+      width: 600px;
+      height: 600px;
+
+      background-color: #f76e96;
+      .areaTitlestory {
+        margin: 20px;
+        label {
+        }
+        input {
+        }
+
+        .iconinput {
+        }
       }
 
       textarea {
