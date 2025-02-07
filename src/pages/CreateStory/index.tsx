@@ -2,7 +2,8 @@ import styles from "./styles.module.scss";
 import image1 from "../../assets/IMG_mystory/Group 8.png";
 import image2 from "../../assets/IMG_mystory/Group 7.png";
 
-import { LuNotebookPen, LuPencilLine, LuBookType } from "react-icons/lu";
+import { LuNotebookPen, LuPencilLine } from "react-icons/lu";
+import { MdOutlineMenuBook } from "react-icons/md";
 import { BsSend } from "react-icons/bs";
 
 const CreateStory = () => {
@@ -30,7 +31,7 @@ const CreateStory = () => {
 
           <div className={styles.buttonContainer}>
             <button>
-              Salvar <LuBookType className={styles.iconbtn} />
+              Salvar <MdOutlineMenuBook className={styles.iconbtn} />
             </button>
             <button>
               Publicar
