@@ -1,0 +1,36 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100vh;
+
+  .storyContainer {
+    h1 {
+      text-align: center;
+    }
+
+    .img1 {
+      width: 100px;
+      height: 100px;
+    }
+    .storyArea {
+      label {
+      }
+      input {
+      }
+
+      textarea {
+      }
+
+      button {
+      }
+    }
+
+    .img2 {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
