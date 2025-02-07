@@ -27,7 +27,6 @@
 
   .navegation {
     display: flex;
-    gap: 30px;
     position: relative;
     .icon {
       font-size: 30px;
@@ -35,7 +34,7 @@
     }
     .navItems {
       display: flex;
-      gap: 50px;
+      gap: 25px;
     }
 
     .navItem {
@@ -59,7 +58,7 @@
 
     .indicator {
       position: absolute;
-      bottom: 0px;
+      bottom: -3px;
       height: 1px;
       width: 40px;
       background-color: #ffffff;

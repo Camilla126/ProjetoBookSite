@@ -7,13 +7,13 @@ import { CgFeed } from "react-icons/cg";
 import { IoHomeOutline, IoBookmark } from "react-icons/io5";
 import { useContext } from "react";
 import { AuthContext, AuthContextInterface } from "../../contexts/auth";
-
+import { MdOutlineMenuBook } from "react-icons/md";
 export default function Header() {
   const { logOut, user } = useContext(AuthContext) as AuthContextInterface;
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("/home");
 
-  const routeToRender = ["/saved", "/home", "/feed"];
+  const routeToRender = ["/saved", "/home", "/feed", "/mystory"];
 
   useEffect(() => {
     setActiveTab(location.pathname);
@@ -55,6 +55,16 @@ export default function Header() {
             <IoBookmark className={styles.icon} />
             Saved
           </Link>
+
+          <Link
+            to="/mystory"
+            className={`${styles.navItem} ${
+              activeTab === "/mystory" ? styles.active : ""
+            }`}
+          >
+            <MdOutlineMenuBook className={styles.icon} />
+            My Story
+          </Link>
           <div
             className={styles.indicator}
             style={{
@@ -62,11 +72,13 @@ export default function Header() {
                 activeTab === "/home"
                   ? 0
                   : activeTab === "/feed"
-                  ? 209
+                  ? 145
                   : activeTab === "/saved"
-                  ? 417
+                  ? 290
+                  : activeTab === "/mystory"
+                  ? 460
                   : 0
-              }%)`,
+              }%`,
               display: routeToRender.includes(activeTab) ? "flex" : "none",
             }}
           />

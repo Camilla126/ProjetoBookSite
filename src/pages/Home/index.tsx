@@ -20,7 +20,7 @@ const Home = () => {
 
       <div className={styles.contentContainer}>
         <div className={styles.buttonContainer}>
-          <Link to="/mystory">
+          <Link to="/createstory">
             <button>
               Criar minha história
               <PiBookOpenTextThin className={styles.icons} />
