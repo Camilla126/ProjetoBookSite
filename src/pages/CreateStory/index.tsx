@@ -2,7 +2,8 @@ import styles from "./styles.module.scss";
 import image1 from "../../assets/IMG_mystory/Group 8.png";
 import image2 from "../../assets/IMG_mystory/Group 7.png";
 
-import { LuNotebookPen, LuPencilLine } from "react-icons/lu";
+import { LuNotebookPen, LuPencilLine, LuBookType } from "react-icons/lu";
+import { BsSend } from "react-icons/bs";
 
 const CreateStory = () => {
   return (
@@ -26,8 +27,16 @@ const CreateStory = () => {
           </div>
 
           <textarea placeholder="Comece sua história"></textarea>
-          <button>Salvar</button>
-          <button>Publicar</button>
+
+          <div className={styles.buttonContainer}>
+            <button>
+              Salvar <LuBookType className={styles.iconbtn} />
+            </button>
+            <button>
+              Publicar
+              <BsSend className={styles.iconbtn} />
+            </button>
+          </div>
         </div>
 
         <img src={image2} alt="Menina escrevendo" className={styles.img2} />
