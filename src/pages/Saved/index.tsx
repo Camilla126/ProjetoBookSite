@@ -1,7 +1,7 @@
 const Saved = () => {
   return (
     <div>
-      <h1>SAVEDkkkkkkkkkkkkkkkkkkkkkkkkkk</h1>
+      <h1>Saved</h1>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 const MyStory = () => {
   return (
     <div>
-      <h1>Mystory</h1>
+      <h1>Minhas histórias</h1>
     </div>
   );
 };

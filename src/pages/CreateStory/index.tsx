@@ -1,6 +1,7 @@
 import styles from "./styles.module.scss";
 import image1 from "../../assets/IMG_mystory/Group 8.png";
 import image2 from "../../assets/IMG_mystory/Group 7.png";
+import { Link } from "react-router-dom";
 
 import { LuNotebookPen, LuPencilLine } from "react-icons/lu";
 import { MdOutlineMenuBook } from "react-icons/md";
@@ -30,13 +31,18 @@ const CreateStory = () => {
           <textarea placeholder="Comece sua história"></textarea>
 
           <div className={styles.buttonContainer}>
-            <button>
-              Salvar <MdOutlineMenuBook className={styles.iconbtn} />
-            </button>
-            <button>
-              Publicar
-              <BsSend className={styles.iconbtn} />
-            </button>
+            <Link to="/mystory">
+              <button>
+                Salvar <MdOutlineMenuBook className={styles.iconbtn} />
+              </button>
+            </Link>
+
+            <Link to="/feed">
+              <button>
+                Publicar
+                <BsSend className={styles.iconbtn} />
+              </button>
+            </Link>
           </div>
         </div>
 

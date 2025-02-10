@@ -1,7 +1,7 @@
 const BestReader = () => {
   return (
     <div>
-      <h1>BESTREADER</h1>
+      <h1>Melhores leitores</h1>
     </div>
   );
 };
