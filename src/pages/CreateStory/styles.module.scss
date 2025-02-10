@@ -87,18 +87,20 @@ main {
           gap: 6px;
           cursor: pointer;
           transition: background-color 0.3s ease, color 0.3s ease;
-          background-color: #f6346d;
+
           border-radius: 8px;
           border: none;
           width: 130px;
           height: 40px;
-          color: #ffa8a7;
+          background-color: #f6346d;
           font-size: 20px;
 
+          color: white;
           &:hover {
             transition: background-color 0.3s ease, color 0.3s ease;
-            background-color: #c20c43;
-            color: white;
+
+            color: #ffa8a7;
+            background-color: #d2295c;
           }
         }
 

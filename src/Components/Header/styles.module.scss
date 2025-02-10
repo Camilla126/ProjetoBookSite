@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     margin-left: 40px;
-
+    gap: 10px;
     .iconUser {
       font-size: 40px;
       color: #ffffff;
@@ -21,7 +21,6 @@
 
     .userName {
       font-size: 18px;
-      margin-left: 10px;
     }
   }
 
@@ -47,7 +46,7 @@
       font-weight: 500;
 
       &:hover {
-        color: #353131b9;
+        color: #7d044b;
         transition: color 0.3s ease;
       }
 
@@ -68,6 +67,7 @@
 
   .logoutLink {
     margin-right: 40px;
+    gap: 6px;
     color: black;
     display: flex;
     align-items: center;
@@ -75,7 +75,7 @@
     cursor: pointer;
     font-size: 18px;
     &:hover {
-      color: #353131b9;
+      color: #7d044b;
       transition: 1s;
     }
     .iconSair {
