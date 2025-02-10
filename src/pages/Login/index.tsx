@@ -70,10 +70,8 @@ export default function Login() {
 
   return (
     <main className={styles.main}>
-      {" "}
       <img src={IntersectImage} alt="Book" />
       <form className={styles.formContainer} onSubmit={handleSignIn}>
-        {" "}
         <div>
           <h3>
             <GiSpellBook className={styles.iconLogo} /> BookWorms

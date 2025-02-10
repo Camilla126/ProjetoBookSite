@@ -1,13 +1,22 @@
 import styles from "./styles.module.scss";
-import image1 from "../../assets/IMG_mystory/Group 8.png";
-import image2 from "../../assets/IMG_mystory/Group 7.png";
-import { Link } from "react-router-dom";
+import image1 from "../../assets/IMG_mystory/group 8.png"; // Renomeado corretamente
+import image2 from "../../assets/IMG_mystory/group 7.png";
 
 import { LuNotebookPen, LuPencilLine } from "react-icons/lu";
 import { MdOutlineMenuBook } from "react-icons/md";
 import { BsSend } from "react-icons/bs";
 
+import { useState } from "react";
+
 const CreateStory = () => {
+  const [titulo, setTitulo] = useState("");
+  const [conteudo, setConteudo] = useState("");
+
+  const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("História salva:", { titulo, conteudo });
+  };
+
   return (
     <main className={styles.main}>
       <div className={styles.storyContainer}>
@@ -21,30 +30,34 @@ const CreateStory = () => {
           className={styles.img1}
         />
 
-        <div className={styles.storyArea}>
+        <form className={styles.storyArea} onSubmit={handleSave}>
           <div className={styles.areaTitlestory}>
             <label htmlFor="title">Título:</label>
-            <input type="text" id="title" />{" "}
+            <input
+              type="text"
+              id="title"
+              value={titulo}
+              onChange={(e) => setTitulo(e.target.value)}
+            />
             <LuPencilLine className={styles.iconinput} />
           </div>
 
-          <textarea placeholder="Comece sua história"></textarea>
+          <textarea
+            placeholder="Comece sua história"
+            value={conteudo}
+            onChange={(e) => setConteudo(e.target.value)}
+          ></textarea>
 
           <div className={styles.buttonContainer}>
-            <Link to="/mystory">
-              <button>
-                Salvar <MdOutlineMenuBook className={styles.iconbtn} />
-              </button>
-            </Link>
+            <button type="submit">
+              Salvar <MdOutlineMenuBook className={styles.iconbtn} />
+            </button>
 
-            <Link to="/feed">
-              <button>
-                Publicar
-                <BsSend className={styles.iconbtn} />
-              </button>
-            </Link>
+            <button type="button">
+              Publicar <BsSend className={styles.iconbtn} />
+            </button>
           </div>
-        </div>
+        </form>
 
         <img src={image2} alt="Menina escrevendo" className={styles.img2} />
       </div>

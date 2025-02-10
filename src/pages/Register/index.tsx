@@ -42,7 +42,6 @@ export default function Register() {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      console.log("Userrr", user);
       if (user) {
         navigate("/home");
       }
