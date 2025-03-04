@@ -1,5 +1,5 @@
 import styles from "./styles.module.scss";
-import image1 from "../../assets/IMG_mystory/group 8.png"; // Renomeado corretamente
+import image1 from "../../assets/IMG_mystory/group 8.png";
 import image2 from "../../assets/IMG_mystory/group 7.png";
 
 import { LuNotebookPen, LuPencilLine } from "react-icons/lu";
@@ -53,7 +53,7 @@ const CreateStory = () => {
               Salvar <MdOutlineMenuBook className={styles.iconbtn} />
             </button>
 
-            <button type="button">
+            <button type="submit">
               Publicar <BsSend className={styles.iconbtn} />
             </button>
           </div>
