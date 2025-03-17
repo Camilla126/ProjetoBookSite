@@ -16,7 +16,6 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <AuthProvider>
         <StoryProvider>
-          {" "}
           <ToastContainer autoClose={3000} />
           <MainRoutes />
         </StoryProvider>

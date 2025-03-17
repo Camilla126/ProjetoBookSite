@@ -1,16 +1,21 @@
 import { useContext, useEffect } from "react";
 import { StoryContext } from "../../contexts/StoryContext";
+import { AuthContext } from "../../contexts/auth";
 
 const Feed = () => {
-  const { feedStories, loadFeedStories, loadingStories } =
-    useContext(StoryContext)!;
+  const {
+    feedStories,
+    loadFeedStories,
+    loadingStories,
+    deleteStory,
+    setStoryToDelete,
+    storyToDelete,
+  } = useContext(StoryContext)!;
+
+  const { user } = useContext(AuthContext)!;
 
   useEffect(() => {
-    const fetchStories = async () => {
-      await loadFeedStories();
-    };
-
-    fetchStories();
+    loadFeedStories();
   }, []);
 
   return (
@@ -23,10 +28,9 @@ const Feed = () => {
           {feedStories.length > 0 ? (
             feedStories.map((story) => (
               <div key={story.id}>
-                {" "}
-                <p>Autor: {story.authorName}</p>{" "}
+                <p>{story.authorName}</p>
                 <p>
-                  <strong>Publicado em: </strong>
+                  <strong>Publicado em:</strong>{" "}
                   {story.createdAt instanceof Date
                     ? story.createdAt.toLocaleDateString("pt-BR", {
                         day: "2-digit",
@@ -39,11 +43,33 @@ const Feed = () => {
                 </p>
                 <h2>{story.title}</h2>
                 <p>{story.content}</p>
+
+                {user && user.uid === story.uid && (
+                  <button onClick={() => setStoryToDelete(story)}>
+                    Excluir
+                  </button>
+                )}
               </div>
             ))
           ) : (
             <p>Nenhuma história disponível no momento.</p>
           )}
+        </div>
+      )}
+
+      {storyToDelete && (
+        <div className="modal">
+          <div className="modal-content">
+            <p>Tem certeza que deseja excluir "{storyToDelete.title}"?</p>
+            <div className="buttons">
+              <button onClick={deleteStory} className="confirm">
+                Sim
+              </button>
+              <button onClick={() => setStoryToDelete(null)} className="cancel">
+                Não
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

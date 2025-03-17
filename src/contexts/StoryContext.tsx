@@ -17,6 +17,8 @@ import {
   DocumentData,
   QuerySnapshot,
   Timestamp,
+  deleteDoc,
+  doc,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { AuthContext } from "./auth";
@@ -40,6 +42,9 @@ export interface StoryContextInterface {
   publishStory: (title: string, content: string) => Promise<void>;
   loadMyStories: () => Promise<void>;
   loadFeedStories: () => Promise<void>;
+  setStoryToDelete: (story: StoryInterface | null) => void;
+  deleteStory: () => Promise<void>;
+  storyToDelete: StoryInterface | null;
 }
 
 export const StoryContext = createContext<StoryContextInterface | undefined>(
@@ -51,6 +56,9 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [myStories, setMyStories] = useState<StoryInterface[]>([]);
   const [feedStories, setFeedStories] = useState<StoryInterface[]>([]);
   const [loadingStories, setLoadingStories] = useState(false);
+  const [storyToDelete, setStoryToDelete] = useState<StoryInterface | null>(
+    null
+  );
 
   const authContext = useContext(AuthContext);
 
@@ -61,6 +69,37 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [authContext?.user]);
 
+  async function deleteStory() {
+    if (!storyToDelete || !storyToDelete.id) {
+      toast.error("Erro: Nenhuma história selecionada para exclusão.");
+      return;
+    }
+
+    setLoadingStories(true);
+
+    try {
+      const storyRef = doc(db, "stories", storyToDelete.id);
+      await deleteDoc(storyRef);
+
+      setMyStories((prev) =>
+        prev.filter((story) => story.id !== storyToDelete.id)
+      );
+      setFeedStories((prev) =>
+        prev.filter((story) => story.id !== storyToDelete.id)
+      );
+      setStories((prev) =>
+        prev.filter((story) => story.id !== storyToDelete.id)
+      );
+
+      toast.success("História excluída com sucesso!");
+    } catch (error) {
+      console.error("Erro ao excluir história:", error);
+      toast.error("Erro ao excluir história. Tente novamente.");
+    } finally {
+      setStoryToDelete(null);
+      setLoadingStories(false);
+    }
+  }
   async function saveStory(title: string, content: string) {
     if (!authContext?.user) {
       toast.error("Você precisa estar logado para salvar uma história.");
@@ -173,7 +212,7 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   async function loadFeedStories() {
     setLoadingStories(true);
-    console.log("Carregando histórias do feed...");
+
     try {
       const q = query(
         collection(db, "stories"),
@@ -232,6 +271,9 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
         publishStory,
         loadMyStories,
         loadFeedStories,
+        deleteStory,
+        setStoryToDelete,
+        storyToDelete,
       }}
     >
       {children}
