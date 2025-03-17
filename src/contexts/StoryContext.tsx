@@ -173,7 +173,7 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   async function loadFeedStories() {
     setLoadingStories(true);
-
+    console.log("Carregando histórias do feed...");
     try {
       const q = query(
         collection(db, "stories"),
