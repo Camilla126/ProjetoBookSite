@@ -1,6 +1,8 @@
 import { useContext, useEffect } from "react";
 import { StoryContext } from "../../contexts/StoryContext";
 import { AuthContext } from "../../contexts/auth";
+import { FaUserCircle, FaThumbsUp } from "react-icons/fa"; // Importando o ícone de like
+import styles from "./styles.module.scss";
 
 const Feed = () => {
   const {
@@ -10,6 +12,7 @@ const Feed = () => {
     deleteStory,
     setStoryToDelete,
     storyToDelete,
+    toggleLikeStory,
   } = useContext(StoryContext)!;
 
   const { user } = useContext(AuthContext)!;
@@ -28,7 +31,10 @@ const Feed = () => {
           {feedStories.length > 0 ? (
             feedStories.map((story) => (
               <div key={story.id}>
-                <p>{story.authorName}</p>
+                <p>
+                  <FaUserCircle className={styles.iconUser} />
+                  {story.authorName}
+                </p>
                 <p>
                   <strong>Publicado em:</strong>{" "}
                   {story.createdAt instanceof Date
@@ -43,6 +49,16 @@ const Feed = () => {
                 </p>
                 <h2>{story.title}</h2>
                 <p>{story.content}</p>
+
+                <div className={styles.likeContainer}>
+                  <button
+                    onClick={() => toggleLikeStory(story.id!)}
+                    className={styles.likeButton}
+                  >
+                    <FaThumbsUp className={styles.likeIcon} />
+                    {story.likes?.length || 0} Curtir
+                  </button>
+                </div>
 
                 {user && user.uid === story.uid && (
                   <button onClick={() => setStoryToDelete(story)}>

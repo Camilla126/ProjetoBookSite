@@ -19,6 +19,9 @@ import {
   Timestamp,
   deleteDoc,
   doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { AuthContext } from "./auth";
@@ -31,6 +34,7 @@ export interface StoryInterface {
   content: string;
   createdAt: Timestamp | Date;
   published: boolean;
+  likes?: string[];
 }
 
 export interface StoryContextInterface {
@@ -45,6 +49,7 @@ export interface StoryContextInterface {
   setStoryToDelete: (story: StoryInterface | null) => void;
   deleteStory: () => Promise<void>;
   storyToDelete: StoryInterface | null;
+  toggleLikeStory: (storyId: string) => Promise<void>;
 }
 
 export const StoryContext = createContext<StoryContextInterface | undefined>(
@@ -68,6 +73,44 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
       loadFeedStories();
     }
   }, [authContext?.user]);
+
+  async function toggleLikeStory(storyId: string) {
+    if (!authContext?.user) {
+      toast.error("Você precisa estar logado para curtir uma história.");
+      return;
+    }
+
+    try {
+      const userId = authContext.user.uid;
+      const storyRef = doc(db, "stories", storyId);
+      const storyIndex = feedStories.findIndex((story) => story.id === storyId);
+
+      if (storyIndex === -1) return;
+
+      const story = feedStories[storyIndex];
+      const hasLiked = story.likes?.includes(userId);
+
+      await updateDoc(storyRef, {
+        likes: hasLiked ? arrayRemove(userId) : arrayUnion(userId),
+      });
+
+      setFeedStories((prevStories) =>
+        prevStories.map((s) =>
+          s.id === storyId
+            ? {
+                ...s,
+                likes: hasLiked
+                  ? s.likes?.filter((id) => id !== userId)
+                  : [...(s.likes || []), userId],
+              }
+            : s
+        )
+      );
+    } catch (error) {
+      console.error("Erro ao curtir a história:", error);
+      toast.error("Erro ao curtir a história. Tente novamente.");
+    }
+  }
 
   async function deleteStory() {
     if (!storyToDelete || !storyToDelete.id) {
@@ -274,6 +317,7 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
         deleteStory,
         setStoryToDelete,
         storyToDelete,
+        toggleLikeStory,
       }}
     >
       {children}
