@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { StoryContext } from "../../contexts/StoryContext";
 import { AuthContext } from "../../contexts/auth";
-import { FaUserCircle, FaThumbsUp } from "react-icons/fa"; // Importando o ícone de like
+import { FaUserCircle, FaThumbsUp } from "react-icons/fa";
 import styles from "./styles.module.scss";
 
 const Feed = () => {
@@ -89,10 +89,7 @@ const Feed = () => {
           <div className="modal-content">
             <p>Tem certeza que deseja excluir "{storyToDelete.title}"?</p>
             <div className="buttons">
-              <button
-                onClick={() => deleteStory(true)} // Passa `true` para indicar exclusão do feed
-                className="confirm"
-              >
+              <button onClick={() => deleteStory(true)} className="confirm">
                 Sim
               </button>
               <button onClick={() => setStoryToDelete(null)} className="cancel">

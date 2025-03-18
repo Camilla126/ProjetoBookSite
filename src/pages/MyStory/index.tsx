@@ -14,18 +14,11 @@ const MyStory = () => {
   } = useContext(StoryContext)!;
 
   useEffect(() => {
-    const fetchStories = async () => {
-      await loadMyStories();
-    };
-
-    fetchStories();
+    loadMyStories();
   }, []);
-
   const handlePublish = async (storyId: string) => {
     try {
       await publishExistingStory(storyId);
-
-      await loadMyStories();
     } catch {
       toast.error("Erro ao publicar história. Tente novamente.");
     }
@@ -73,7 +66,10 @@ const MyStory = () => {
       {storyToDelete && (
         <div className="modal">
           <div className="modal-content">
-            <p>Tem certeza que deseja excluir "{storyToDelete.title}"?</p>
+            <p>
+              Tem certeza que deseja excluir permanentemente? "
+              {storyToDelete.title}"?
+            </p>
             <div className="buttons">
               <button onClick={() => deleteStory(false)} className="confirm">
                 Sim

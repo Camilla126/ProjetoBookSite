@@ -48,7 +48,7 @@ export interface StoryContextInterface {
   loadMyStories: () => Promise<void>;
   loadFeedStories: () => Promise<void>;
   setStoryToDelete: (story: StoryInterface | null) => void;
-  deleteStory: (isFromFeed: boolean) => Promise<void>; // Adicionado parâmetro
+  deleteStory: (isFromFeed: boolean) => Promise<void>;
   storyToDelete: StoryInterface | null;
   toggleLikeStory: (storyId: string) => Promise<void>;
 }
@@ -130,8 +130,6 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
         setFeedStories((prev) =>
           prev.filter((story) => story.id !== storyToDelete.id)
         );
-
-        toast.success("História removida do feed com sucesso!");
       } else {
         await deleteDoc(storyRef);
 
@@ -144,8 +142,6 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
         setStories((prev) =>
           prev.filter((story) => story.id !== storyToDelete.id)
         );
-
-        toast.success("História excluída permanentemente com sucesso!");
       }
     } catch {
       toast.error("Erro ao excluir história. Tente novamente.");
@@ -188,8 +184,6 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
       setMyStories((prevStories) => [storyWithId, ...prevStories]);
       setStories((prevStories) => [storyWithId, ...prevStories]);
-
-      toast.success("História salva com sucesso!");
     } catch {
       toast.error("Erro ao salvar história. Tente novamente.");
     } finally {
@@ -251,19 +245,26 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const storyRef = doc(db, "stories", storyId);
       await updateDoc(storyRef, {
         published: true,
+        createdAt: serverTimestamp(),
       });
 
       setMyStories((prevStories) =>
         prevStories.map((story) =>
-          story.id === storyId ? { ...story, published: true } : story
+          story.id === storyId
+            ? { ...story, published: true, createdAt: new Date() }
+            : story
         )
       );
 
       setFeedStories((prevStories) =>
         prevStories.map((story) =>
-          story.id === storyId ? { ...story, published: true } : story
+          story.id === storyId
+            ? { ...story, published: true, createdAt: new Date() }
+            : story
         )
       );
+
+      toast.success("História publicada com sucesso!");
     } catch {
       toast.error("Erro ao publicar história. Tente novamente.");
     } finally {
