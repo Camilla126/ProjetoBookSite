@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { StoryContext } from "../../contexts/StoryContext";
 import { toast } from "react-toastify";
+
 const MyStory = () => {
   const {
     myStories,
@@ -74,7 +75,7 @@ const MyStory = () => {
           <div className="modal-content">
             <p>Tem certeza que deseja excluir "{storyToDelete.title}"?</p>
             <div className="buttons">
-              <button onClick={deleteStory} className="confirm">
+              <button onClick={() => deleteStory(false)} className="confirm">
                 Sim
               </button>
               <button onClick={() => setStoryToDelete(null)} className="cancel">

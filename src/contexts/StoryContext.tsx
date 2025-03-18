@@ -44,11 +44,11 @@ export interface StoryContextInterface {
   loadingStories: boolean;
   saveStory: (title: string, content: string) => Promise<void>;
   publishStory: (title: string, content: string) => Promise<void>;
-  publishExistingStory: (storyId: string) => Promise<void>; // Nova função
+  publishExistingStory: (storyId: string) => Promise<void>;
   loadMyStories: () => Promise<void>;
   loadFeedStories: () => Promise<void>;
   setStoryToDelete: (story: StoryInterface | null) => void;
-  deleteStory: () => Promise<void>;
+  deleteStory: (isFromFeed: boolean) => Promise<void>; // Adicionado parâmetro
   storyToDelete: StoryInterface | null;
   toggleLikeStory: (storyId: string) => Promise<void>;
 }
@@ -112,7 +112,7 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }
 
-  async function deleteStory() {
+  async function deleteStory(isFromFeed: boolean) {
     if (!storyToDelete || !storyToDelete.id) {
       return;
     }
@@ -121,19 +121,32 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     try {
       const storyRef = doc(db, "stories", storyToDelete.id);
-      await deleteDoc(storyRef);
 
-      setMyStories((prev) =>
-        prev.filter((story) => story.id !== storyToDelete.id)
-      );
-      setFeedStories((prev) =>
-        prev.filter((story) => story.id !== storyToDelete.id)
-      );
-      setStories((prev) =>
-        prev.filter((story) => story.id !== storyToDelete.id)
-      );
+      if (isFromFeed) {
+        await updateDoc(storyRef, {
+          published: false,
+        });
 
-      toast.success("História excluída com sucesso!");
+        setFeedStories((prev) =>
+          prev.filter((story) => story.id !== storyToDelete.id)
+        );
+
+        toast.success("História removida do feed com sucesso!");
+      } else {
+        await deleteDoc(storyRef);
+
+        setMyStories((prev) =>
+          prev.filter((story) => story.id !== storyToDelete.id)
+        );
+        setFeedStories((prev) =>
+          prev.filter((story) => story.id !== storyToDelete.id)
+        );
+        setStories((prev) =>
+          prev.filter((story) => story.id !== storyToDelete.id)
+        );
+
+        toast.success("História excluída permanentemente com sucesso!");
+      }
     } catch {
       toast.error("Erro ao excluir história. Tente novamente.");
     } finally {
@@ -240,7 +253,6 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
         published: true,
       });
 
-      // Atualizar a lista de histórias
       setMyStories((prevStories) =>
         prevStories.map((story) =>
           story.id === storyId ? { ...story, published: true } : story
@@ -252,8 +264,6 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
           story.id === storyId ? { ...story, published: true } : story
         )
       );
-
-      toast.success("História publicada com sucesso!");
     } catch {
       toast.error("Erro ao publicar história. Tente novamente.");
     } finally {

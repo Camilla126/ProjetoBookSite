@@ -73,7 +73,7 @@ const Feed = () => {
 
                 {user && user.uid === story.uid && (
                   <button onClick={() => setStoryToDelete(story)}>
-                    Excluir
+                    Excluir do Feed
                   </button>
                 )}
               </div>
@@ -89,7 +89,10 @@ const Feed = () => {
           <div className="modal-content">
             <p>Tem certeza que deseja excluir "{storyToDelete.title}"?</p>
             <div className="buttons">
-              <button onClick={deleteStory} className="confirm">
+              <button
+                onClick={() => deleteStory(true)} // Passa `true` para indicar exclusão do feed
+                className="confirm"
+              >
                 Sim
               </button>
               <button onClick={() => setStoryToDelete(null)} className="cancel">
