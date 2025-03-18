@@ -8,7 +8,6 @@ import { BsSend } from "react-icons/bs";
 
 import { useState, useContext } from "react";
 import { StoryContext } from "../../contexts/StoryContext";
-import { AuthContext } from "../../contexts/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -18,20 +17,10 @@ const CreateStory = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const storyContext = useContext(StoryContext);
-  const authContext = useContext(AuthContext);
+
   const navigate = useNavigate();
 
-  if (!authContext?.signed) {
-    return (
-      <main className={styles.main}>
-        <div className={styles.storyContainer}>
-          <h1>Você precisa estar logado para criar histórias</h1>
-        </div>
-      </main>
-    );
-  }
-
-  const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitStory = async (e: React.FormEvent, publish: boolean) => {
     e.preventDefault();
 
     if (!titulo.trim() || !conteudo.trim()) {
@@ -43,46 +32,35 @@ const CreateStory = () => {
     setIsSubmitting(true);
 
     try {
-      await storyContext?.saveStory(titulo, conteudo);
-      toast.success("História salva com sucesso!");
+      if (publish) {
+        await storyContext?.publishStory(titulo, conteudo);
+
+        navigate("/feed");
+      } else {
+        await storyContext?.saveStory(titulo, conteudo);
+
+        navigate("/mystory");
+      }
 
       setTitulo("");
       setConteudo("");
-
-      navigate("/mystory");
     } catch (error) {
-      console.error("Erro ao salvar história:", error);
+      console.error(
+        `Erro ao ${publish ? "publicar" : "salvar"} história:`,
+        error
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handlePublish = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
-    if (!titulo.trim() || !conteudo.trim()) {
-      toast.error("Preencha o título e o conteúdo da história.");
-      return;
-    }
-
-    if (isSubmitting) return;
-    setIsSubmitting(true);
-
-    try {
-      await storyContext?.publishStory(titulo, conteudo);
-      toast.success("História publicada com sucesso!");
-
-      setTitulo("");
-      setConteudo("");
-
-      navigate("/feed");
-    } catch (error) {
-      console.error("Erro ao publicar história:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
+  const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
+    handleSubmitStory(e, false);
   };
 
+  const handlePublish = (e: React.MouseEvent<HTMLButtonElement>) => {
+    handleSubmitStory(e, true);
+  };
   return (
     <main className={styles.main}>
       <div className={styles.storyContainer}>
@@ -127,7 +105,7 @@ const CreateStory = () => {
               onClick={handlePublish}
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Publicando..." : "Publicar"}{" "}
+              {isSubmitting ? "Publicando..." : "Publicar"}
               <BsSend className={styles.iconbtn} />
             </button>
           </div>

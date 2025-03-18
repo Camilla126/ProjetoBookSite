@@ -44,6 +44,7 @@ export interface StoryContextInterface {
   loadingStories: boolean;
   saveStory: (title: string, content: string) => Promise<void>;
   publishStory: (title: string, content: string) => Promise<void>;
+  publishExistingStory: (storyId: string) => Promise<void>; // Nova função
   loadMyStories: () => Promise<void>;
   loadFeedStories: () => Promise<void>;
   setStoryToDelete: (story: StoryInterface | null) => void;
@@ -106,15 +107,13 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
             : s
         )
       );
-    } catch (error) {
-      console.error("Erro ao curtir a história:", error);
+    } catch {
       toast.error("Erro ao curtir a história. Tente novamente.");
     }
   }
 
   async function deleteStory() {
     if (!storyToDelete || !storyToDelete.id) {
-      toast.error("Erro: Nenhuma história selecionada para exclusão.");
       return;
     }
 
@@ -135,14 +134,14 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
       );
 
       toast.success("História excluída com sucesso!");
-    } catch (error) {
-      console.error("Erro ao excluir história:", error);
+    } catch {
       toast.error("Erro ao excluir história. Tente novamente.");
     } finally {
       setStoryToDelete(null);
       setLoadingStories(false);
     }
   }
+
   async function saveStory(title: string, content: string) {
     if (!authContext?.user) {
       toast.error("Você precisa estar logado para salvar uma história.");
@@ -178,8 +177,7 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setStories((prevStories) => [storyWithId, ...prevStories]);
 
       toast.success("História salva com sucesso!");
-    } catch (error) {
-      console.error("Erro ao salvar história:", error);
+    } catch {
       toast.error("Erro ao salvar história. Tente novamente.");
     } finally {
       setLoadingStories(false);
@@ -221,10 +219,42 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setMyStories((prevStories) => [storyWithId, ...prevStories]);
       setFeedStories((prevStories) => [storyWithId, ...prevStories]);
       setStories((prevStories) => [storyWithId, ...prevStories]);
+    } catch {
+      toast.error("Erro ao publicar história. Tente novamente.");
+    } finally {
+      setLoadingStories(false);
+    }
+  }
+
+  async function publishExistingStory(storyId: string) {
+    if (!authContext?.user) {
+      toast.error("Você precisa estar logado para publicar uma história.");
+      return;
+    }
+
+    setLoadingStories(true);
+
+    try {
+      const storyRef = doc(db, "stories", storyId);
+      await updateDoc(storyRef, {
+        published: true,
+      });
+
+      // Atualizar a lista de histórias
+      setMyStories((prevStories) =>
+        prevStories.map((story) =>
+          story.id === storyId ? { ...story, published: true } : story
+        )
+      );
+
+      setFeedStories((prevStories) =>
+        prevStories.map((story) =>
+          story.id === storyId ? { ...story, published: true } : story
+        )
+      );
 
       toast.success("História publicada com sucesso!");
-    } catch (error) {
-      console.error("Erro ao publicar história:", error);
+    } catch {
       toast.error("Erro ao publicar história. Tente novamente.");
     } finally {
       setLoadingStories(false);
@@ -246,8 +276,7 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const storiesData = processStoriesData(querySnapshot);
 
       setMyStories(storiesData);
-    } catch (error) {
-      console.error("Erro ao carregar minhas histórias:", error);
+    } catch {
       toast.error("Erro ao carregar suas histórias. Tente novamente.");
     } finally {
       setLoadingStories(false);
@@ -267,8 +296,7 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const storiesData = processStoriesData(querySnapshot);
 
       setFeedStories(storiesData);
-    } catch (error) {
-      console.error("Erro ao carregar feed de histórias:", error);
+    } catch {
       toast.error("Erro ao carregar o feed. Tente novamente.");
     } finally {
       setLoadingStories(false);
@@ -314,6 +342,7 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
         loadingStories,
         saveStory,
         publishStory,
+        publishExistingStory,
         loadMyStories,
         loadFeedStories,
         deleteStory,

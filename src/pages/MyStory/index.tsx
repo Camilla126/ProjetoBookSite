@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { StoryContext } from "../../contexts/StoryContext";
-
+import { toast } from "react-toastify";
 const MyStory = () => {
   const {
     myStories,
@@ -9,6 +9,7 @@ const MyStory = () => {
     deleteStory,
     setStoryToDelete,
     storyToDelete,
+    publishExistingStory,
   } = useContext(StoryContext)!;
 
   useEffect(() => {
@@ -18,6 +19,17 @@ const MyStory = () => {
 
     fetchStories();
   }, []);
+
+  const handlePublish = async (storyId: string) => {
+    try {
+      await publishExistingStory(storyId);
+
+      await loadMyStories();
+    } catch {
+      toast.error("Erro ao publicar história. Tente novamente.");
+    }
+  };
+
   return (
     <div>
       <h1>Minhas histórias</h1>
@@ -43,6 +55,12 @@ const MyStory = () => {
                 <h2>{story.title}</h2>
                 <p>{story.content}</p>
                 <button onClick={() => setStoryToDelete(story)}>Excluir</button>
+
+                {!story.published && (
+                  <button onClick={() => handlePublish(story.id!)}>
+                    Publicar
+                  </button>
+                )}
               </div>
             ))
           ) : (
