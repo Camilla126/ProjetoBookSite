@@ -55,8 +55,19 @@ const Feed = () => {
                     onClick={() => toggleLikeStory(story.id!)}
                     className={styles.likeButton}
                   >
-                    <FaThumbsUp className={styles.likeIcon} />
-                    {story.likes?.length || 0} Curtir
+                    <FaThumbsUp
+                      className={`${styles.likeIcon} ${
+                        user && story.likes && story.likes.includes(user.uid)
+                          ? styles.liked
+                          : ""
+                      }`}
+                    />
+                    <span className={styles.likeCount}>
+                      {story.likes?.length || 0}
+                    </span>
+                    {user && story.likes && story.likes.includes(user.uid)
+                      ? "Curtido"
+                      : "Curtir"}
                   </button>
                 </div>
 

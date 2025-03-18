@@ -207,6 +207,7 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
         content,
         createdAt: serverTimestamp(),
         published: true,
+        likes: [],
       };
 
       const docRef = await addDoc(collection(db, "stories"), newStory);
@@ -288,6 +289,7 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
         title: data.title,
         content: data.content,
         published: data.published,
+        likes: data.likes || [],
         createdAt:
           data.createdAt instanceof Timestamp
             ? data.createdAt.toDate()
