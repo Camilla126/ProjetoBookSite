@@ -2,6 +2,7 @@ import { useState, useEffect, FC, ReactNode } from "react";
 import { auth } from "../firebaseConnection";
 import { onAuthStateChanged } from "firebase/auth";
 import { Navigate } from "react-router-dom";
+import styles from "./styles.module.scss";
 
 const Private: FC<{ children: ReactNode }> = ({ children }) => {
   const [signed, setSigned] = useState(false);
@@ -21,7 +22,12 @@ const Private: FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   if (loading) {
-    return <div>Carregando...</div>;
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.spinner}></div>
+        <p>Carregando...</p>
+      </div>
+    );
   }
 
   if (!signed) {

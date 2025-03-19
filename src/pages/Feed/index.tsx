@@ -5,7 +5,11 @@ import { AuthContext } from "../../contexts/auth";
 
 import { FaUserCircle } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { FcLike } from "react-icons/fc";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+
+import { LiaBookReaderSolid } from "react-icons/lia";
+
+import IntersectImage from "../../assets/IMG_feed/Group 5.png";
 
 import styles from "./styles.module.scss";
 
@@ -28,11 +32,18 @@ const Feed = () => {
 
   return (
     <main className={styles.feed}>
+      <img src={IntersectImage} className={styles.img} />
       <div className={styles.feedContent}>
-        <h1>Bem vindo ao feed de histórias</h1>
+        <h1>
+          Bem vindo ao feed de histórias
+          <LiaBookReaderSolid className={styles.iconTitle} />
+        </h1>
 
         {loadingStories ? (
-          <p>Carregando histórias...</p>
+          <div className={styles.loadingContainer}>
+            <div className={styles.spinner}></div>
+            <p>Carregando histórias...</p>
+          </div>
         ) : (
           <div className={styles.feedStory}>
             {feedStories.length > 0 ? (
@@ -64,19 +75,17 @@ const Feed = () => {
                       onClick={() => toggleLikeStory(story.id!)}
                       className={styles.likeButton}
                     >
-                      <FcLike
-                        className={`${styles.likeIcon} ${
-                          user && story.likes && story.likes.includes(user.uid)
-                            ? styles.liked
-                            : ""
-                        }`}
-                      />
+                      {user && story.likes?.includes(user.uid) ? (
+                        <FaHeart className={styles.liked} />
+                      ) : (
+                        <FaRegHeart className={styles.notLiked} />
+                      )}
                       <span className={styles.likeCount}>
                         {story.likes?.length || 0}
                       </span>
-                      {user && story.likes && story.likes.includes(user.uid)
-                        ? "Curtido"
-                        : "Curtir"}
+                      {user && story.likes?.includes(user.uid)
+                        ? " Curtiu"
+                        : " Curtir"}
                     </button>
                   </div>
 
@@ -89,7 +98,9 @@ const Feed = () => {
                 </div>
               ))
             ) : (
-              <p>Nenhuma história disponível no momento.</p>
+              <p className={styles.noStories}>
+                Nenhuma história disponível no momento.
+              </p>
             )}
           </div>
         )}
@@ -97,7 +108,9 @@ const Feed = () => {
         {storyToDelete && (
           <div className={styles.modal}>
             <div className={styles.modalContent}>
-              <p>Tem certeza que deseja excluir "{storyToDelete.title}"?</p>
+              <p>
+                Tem certeza que deseja excluir "{storyToDelete.title}" do Feed?
+              </p>
               <div className={styles.buttons}>
                 <button onClick={() => deleteStory(true)}>Sim</button>
                 <button onClick={() => setStoryToDelete(null)}>Não</button>
