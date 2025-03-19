@@ -65,7 +65,6 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [storyToDelete, setStoryToDelete] = useState<StoryInterface | null>(
     null
   );
-
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
@@ -123,16 +122,12 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const storyRef = doc(db, "stories", storyToDelete.id);
 
       if (isFromFeed) {
-        await updateDoc(storyRef, {
-          published: false,
-        });
-
+        await updateDoc(storyRef, { published: false });
         setFeedStories((prev) =>
           prev.filter((story) => story.id !== storyToDelete.id)
         );
       } else {
         await deleteDoc(storyRef);
-
         setMyStories((prev) =>
           prev.filter((story) => story.id !== storyToDelete.id)
         );
@@ -263,8 +258,6 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
             : story
         )
       );
-
-      toast.success("História publicada com sucesso!");
     } catch {
       toast.error("Erro ao publicar história. Tente novamente.");
     } finally {
@@ -282,7 +275,6 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
         collection(db, "stories"),
         where("uid", "==", authContext.user.uid)
       );
-
       const querySnapshot = await getDocs(q);
       const storiesData = processStoriesData(querySnapshot);
 
@@ -302,7 +294,6 @@ const StoryProvider: FC<{ children: ReactNode }> = ({ children }) => {
         collection(db, "stories"),
         where("published", "==", true)
       );
-
       const querySnapshot = await getDocs(q);
       const storiesData = processStoriesData(querySnapshot);
 

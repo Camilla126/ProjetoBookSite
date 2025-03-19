@@ -1,0 +1,48 @@
+.feed {
+  background-color: red;
+  .feedContent {
+    background-color: pink;
+    h1 {
+    }
+
+    .modal {
+      background-color: blueviolet;
+      .modalContent {
+        p {
+        }
+
+        .buttons {
+          button {
+          }
+        }
+      }
+    }
+
+    .feedStory {
+      background-color: aqua;
+      .feedStoryContent {
+        p {
+          .iconUser {
+          }
+        }
+
+        .DatePublish {
+        }
+
+        h2 {
+        }
+        .contentCreateStory {
+        }
+
+        .likeContainer {
+          button {
+          }
+          .likeIcon {
+          }
+          .likeCount {
+          }
+        }
+      }
+    }
+  }
+}
