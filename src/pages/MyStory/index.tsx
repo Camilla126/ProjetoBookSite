@@ -3,7 +3,7 @@ import { StoryContext } from "../../contexts/StoryContext";
 import { toast } from "react-toastify";
 
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { BsSend } from "react-icons/bs";
+import { BsCheckCircle, BsSend } from "react-icons/bs";
 
 import styles from "../Feed/styles.module.scss";
 import buttonStyles from "./styles.module.scss";
@@ -63,13 +63,18 @@ const MyStory = () => {
                     onClick={() => setStoryToDelete(story)}
                   />
 
-                  {!story.published && (
-                    <div className={buttonStyles.buttonContainer}>
+                  <div className={buttonStyles.buttonContainer}>
+                    {story.published ? (
+                      <button className={buttonStyles.publishedText}>
+                        Publicado{" "}
+                        <BsCheckCircle className={buttonStyles.publishedIcon} />
+                      </button>
+                    ) : (
                       <button onClick={() => handlePublish(story.id!)}>
                         Publicar <BsSend className={buttonStyles.iconbtn} />
                       </button>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               ))
             ) : (
@@ -82,7 +87,7 @@ const MyStory = () => {
           <div className={styles.modal}>
             <div className={styles.modalContent}>
               <p>
-                Tem certeza que deseja excluir permanentemente"
+                Tem certeza que deseja excluir permanentemente "
                 {storyToDelete.title}"?
               </p>
               <div className={styles.buttons}>
