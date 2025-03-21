@@ -1,8 +1,12 @@
 import { useContext, useEffect } from "react";
 import { StoryContext } from "../../contexts/StoryContext";
 import { toast } from "react-toastify";
-import styles from "../Feed/styles.module.scss";
+
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { BsSend } from "react-icons/bs";
+
+import styles from "../Feed/styles.module.scss";
+import buttonStyles from "./styles.module.scss";
 
 const MyStory = () => {
   const {
@@ -60,9 +64,11 @@ const MyStory = () => {
                   />
 
                   {!story.published && (
-                    <button onClick={() => handlePublish(story.id!)}>
-                      Publicar
-                    </button>
+                    <div className={buttonStyles.buttonContainer}>
+                      <button onClick={() => handlePublish(story.id!)}>
+                        Publicar <BsSend className={buttonStyles.iconbtn} />
+                      </button>
+                    </div>
                   )}
                 </div>
               ))
