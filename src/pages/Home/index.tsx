@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <main className={styles.main}>
       <h1>
-        Bem vindo ao BookWorms <GiSpellBook className={styles.iconTitle} />
+        Bem-vindo ao BookWorms <GiSpellBook className={styles.iconTitle} />
       </h1>
 
       <div className={styles.contentContainer}>
